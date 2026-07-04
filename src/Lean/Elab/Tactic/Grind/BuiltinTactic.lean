@@ -419,6 +419,7 @@ public def renameInaccessibles (mvarId : MVarId) (hs : TSyntaxArray ``binderIden
 @[builtin_grind_tactic «next»] def evalNext : GrindTactic := fun stx => do
   let `(grind| next%$nextTk $hs* =>%$arr $seq:grindSeq) := stx | throwUnsupportedSyntax
   let goal :: goals ← getUnsolvedGoals | throwNoGoalsToBeSolved
+  -- **Note**: `renameInaccessibles` resets cached anchors.
   let mvarId ← renameInaccessibles goal.mvarId hs
   let goal := { goal with mvarId }
   setGoals [goal]
@@ -465,6 +466,7 @@ where
   let `(grind| case%$caseTk $[$tags $hss*]|* =>%$arr $seq:grindSeq) := stx | throwUnsupportedSyntax
   for tag in tags, hs in hss do
     let (goal, goals) ← getCaseGoal tag
+    -- **Note**: `renameInaccessibles` resets cached anchors.
     let mvarId ← renameInaccessibles goal.mvarId hs
     let goal := { goal with mvarId }
     setGoals [goal]

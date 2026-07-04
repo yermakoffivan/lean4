@@ -2624,6 +2624,8 @@ extern "C" LEAN_EXPORT obj_res lean_byte_array_copy_within(obj_arg a, obj_arg o_
     if (dest_off > sz) {
         dest_off = sz;
     }
+    if (len > SIZE_MAX - dest_off)
+        lean_internal_panic_out_of_memory();
     size_t new_sz = std::max(sz, dest_off + len);
     // `a` is owned, so when it is exclusive it can be modified (and grown) in place.
     object * r = lean_sarray_ensure_exclusive(lean_sarray_ensure_capacity(a, new_sz, exact));

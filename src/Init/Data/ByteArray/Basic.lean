@@ -181,10 +181,11 @@ Copies the slice at `[srcOff, srcOff + len)` in {name}`a` to `[destOff, destOff 
 doubled when grown.
 
 This is equivalent to {lean}`a.copySlice srcOff a destOff len exact`, but when {name}`a` is not
-shared the copy is performed in place, even when the source and destination ranges overlap or the
-array is grown; the source range is read as it was before the copy. The argument {name}`a` is
-owned rather than borrowed to make this possible, whereas passing the same array as both source
-and destination of {name}`ByteArray.copySlice` always copies the whole array.
+shared the copy is performed within the existing buffer if its capacity suffices, and with a
+single reallocation otherwise, even when the source and destination ranges overlap; the source
+range is read as it was before the copy. The argument {name}`a` is owned rather than borrowed to
+make this possible, whereas passing the same array as both source and destination of
+{name}`ByteArray.copySlice` always copies the whole array.
 
 With {lean}`destOff = a.size` this appends the slice at `[srcOff, srcOff + len)` to the end of
 {name}`a`, the analogue of Rust's {lit}`Vec::extend_from_within`; as with

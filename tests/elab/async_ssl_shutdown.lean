@@ -35,10 +35,8 @@ instance : Coe Session.Client Session := ⟨Session.Client.toSession⟩
 instance : Coe Session.Server Session := ⟨Session.Server.toSession⟩
 
 def testRecvAfterShutdown (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -76,10 +74,8 @@ def testRecvAfterShutdown (addr : SocketAddress) (certFile keyFile : String) : I
   cliTask.block
 
 def testTLSShutdown (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -107,10 +103,8 @@ def testTLSShutdown (addr : SocketAddress) (certFile keyFile : String) : IO Unit
   cliTask.block
 
 def testRecvAfterTCPClose (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -140,10 +134,8 @@ def testRecvAfterTCPClose (addr : SocketAddress) (certFile keyFile : String) : I
   cliTask.block
 
 def testRecvAfterTLSShutdown (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -174,10 +166,8 @@ def testRecvAfterTLSShutdown (addr : SocketAddress) (certFile keyFile : String) 
   cliTask.block
 
 def testTCPTruncationDetection (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr

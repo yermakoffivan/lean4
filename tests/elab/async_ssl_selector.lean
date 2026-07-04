@@ -35,10 +35,8 @@ instance : Coe Session.Client Session := ⟨Session.Client.toSession⟩
 instance : Coe Session.Server Session := ⟨Session.Server.toSession⟩
 
 def testAcceptSelector (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -68,10 +66,8 @@ def testAcceptSelector (addr : SocketAddress) (certFile keyFile : String) : IO U
   cliTask.block
 
 def testRecvSelector (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -105,10 +101,8 @@ def testRecvSelector (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   cliTask.block
 
 def testRecvSelectorWithTimeout (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -143,10 +137,8 @@ def testRecvSelectorWithTimeout (addr : SocketAddress) (certFile keyFile : Strin
   cliTask.block
 
 def testRecvTimeout (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr

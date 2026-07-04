@@ -67,23 +67,18 @@ def pipeEncrypted (src dst : Session) : IO Unit := do
     discard <| dst.feedEncrypted bytes
 
 def testContextCreation (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let clientCtx ← Context.Client.mk "" false
 
   -- Configuring with a CA file path (non-empty) exercises the other branch.
-  let clientCtx2 ← Context.Client.mk
-  clientCtx2.configure certFile false
+  let clientCtx2 ← Context.Client.mk certFile false
 
 def testConfigureClientFromPEM (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
   let caPEM ← IO.FS.readFile certFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configureFromPEM caPEM true
+  let clientCtx ← Context.Client.mkFromPEM caPEM true
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -92,14 +87,12 @@ def testConfigureClientFromPEM (certFile keyFile : String) : IO Unit := do
   runHandshake clientSess serverSess
 
   let code ← clientSess.verifyResult
-  assertEqN code 0 "verifyResult after configureFromPEM"
+  assertEqN code 0 "verifyResult after mkFromPEM"
 
 def testInProcessHandshake (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false  -- skip peer verification
+  let clientCtx ← Context.Client.mk "" false  -- skip peer verification
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -114,11 +107,9 @@ def testInProcessHandshake (certFile keyFile : String) : IO Unit := do
   discard <| clientSess.verifyResult
 
 def testDataTransfer (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -151,11 +142,9 @@ def testDataTransfer (certFile keyFile : String) : IO Unit := do
   | _ => throw <| IO.userError "expected wantIO when no data available"
 
 def testPendingPlaintext (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -172,10 +161,8 @@ def testPendingPlaintext (certFile keyFile : String) : IO Unit := do
   assertEqN remaining 90 "pendingPlaintext after partial read"
 
 def testEmptyWrite (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -186,10 +173,8 @@ def testEmptyWrite (certFile keyFile : String) : IO Unit := do
     throw <| IO.userError "empty write should return none"
 
 def testReadZero (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -203,10 +188,8 @@ def testReadZero (certFile keyFile : String) : IO Unit := do
   | .closed   => throw <| IO.userError "read? 0 returned .closed unexpectedly"
 
 def testPendingWriteOrder (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -233,10 +216,8 @@ def testPendingWriteOrder (certFile keyFile : String) : IO Unit := do
       throw <| IO.userError s!"write order mismatch at {i}: expected '{expected}', got '{received[i]!}'"
 
 def testVerifyResultString (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -247,10 +228,8 @@ def testVerifyResultString (certFile keyFile : String) : IO Unit := do
     throw <| IO.userError "verifyResultString returned empty string"
 
 def testCloseNotify (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -270,10 +249,8 @@ def testCloseNotify (certFile keyFile : String) : IO Unit := do
   discard <| Session.closeNotify clientSess
 
 def testExactSizeRead (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -293,10 +270,8 @@ def testExactSizeRead (certFile keyFile : String) : IO Unit := do
   | _ => throw <| IO.userError "exact-size read: expected .data"
 
 def testVerifyResultCode (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false   -- VERIFY_NONE
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false   -- VERIFY_NONE
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -309,10 +284,8 @@ def testVerifyResultCode (certFile keyFile : String) : IO Unit := do
     throw <| IO.userError "verifyResult: verifyResultString returned empty string after handshake"
 
 def testCloseNotifySequenceBIO (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -337,10 +310,8 @@ def testCloseNotifySequenceBIO (certFile keyFile : String) : IO Unit := do
   | none   => pure ()
 
 def testReadWithPendingData (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx
@@ -358,10 +329,8 @@ def testReadWithPendingData (certFile keyFile : String) : IO Unit := do
   | .closed   => throw <| IO.userError "readWithPendingData: unexpected closed"
 
 def testPlaintextBeforeCloseNotify (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let serverSess ← Session.Server.mk serverCtx
   let clientSess ← Session.Client.mk clientCtx

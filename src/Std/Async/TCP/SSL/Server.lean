@@ -32,13 +32,6 @@ def mk (serverCtx : Context.Server) : IO Server := do
   return Server.ofNative native serverCtx
 
 /--
-Configures the server context with a PEM certificate and private key.
--/
-@[inline]
-def configure (s : Server) (certFile keyFile : String) : IO Unit :=
-  s.serverCtx.configure certFile keyFile
-
-/--
 Binds the server socket to the specified address.
 -/
 @[inline]

@@ -81,11 +81,9 @@ def setupExpiredCert (keyFile : String) : IO String := do
   return certFile
 
 def testHostnameMismatchFails (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure certFile true   -- our self-signed cert as CA; chain verifies
+  let clientCtx ← Context.Client.mk certFile true   -- our self-signed cert as CA; chain verifies
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -123,10 +121,9 @@ def testHostnameMismatchFails (addr : SocketAddress) (certFile keyFile : String)
   try srvTask.block catch _ => pure ()
 
 def testDefaultVerifiesPeer (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
-  -- Deliberately do NOT call clientCtx.configure.
+  -- Deliberately rely on the `mk` defaults (no CA file, peer verification on).
   let clientCtx ← Context.Client.mk
 
   let server ← Server.mk serverCtx
@@ -154,16 +151,14 @@ def testDefaultVerifiesPeer (addr : SocketAddress) (certFile keyFile : String) :
 
   if ← connectSucceeded.get then
     throw <| IO.userError
-      "testDefaultVerifiesPeer: handshake succeeded without configure — \
+      "testDefaultVerifiesPeer: handshake succeeded against a self-signed cert — \
        Context.Client.mk should default to SSL_VERIFY_PEER with system trust anchors"
 
 def testVerifyResultValues (addrFail addrOk : SocketAddress) (certFile keyFile : String) : IO Unit := do
   -- Part 1: cert verification FAILURE — code must be > 0.
   do
-    let serverCtx ← Context.Server.mk
-    serverCtx.configure certFile keyFile
-    let clientCtx ← Context.Client.mk
-    clientCtx.configure "" true   -- system anchors; self-signed cert is NOT trusted
+    let serverCtx ← Context.Server.mk certFile keyFile
+    let clientCtx ← Context.Client.mk "" true   -- system anchors; self-signed cert is NOT trusted
 
     let server ← Server.mk serverCtx
     server.bind addrFail
@@ -198,10 +193,8 @@ def testVerifyResultValues (addrFail addrOk : SocketAddress) (certFile keyFile :
 
   -- Part 2: cert verification SUCCESS — code must be 0.
   do
-    let serverCtx ← Context.Server.mk
-    serverCtx.configure certFile keyFile
-    let clientCtx ← Context.Client.mk
-    clientCtx.configure certFile true   -- use the cert itself as the trust anchor
+    let serverCtx ← Context.Server.mk certFile keyFile
+    let clientCtx ← Context.Client.mk certFile true   -- use the cert itself as the trust anchor
 
     let server ← Server.mk serverCtx
     server.bind addrOk
@@ -231,14 +224,11 @@ def testVerifyResultValues (addrFail addrOk : SocketAddress) (certFile keyFile :
 
 def testWildcardSAN (addrOk addrFail : SocketAddress) (wildcardCert keyFile : String) :
     IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure wildcardCert keyFile
+  let serverCtx ← Context.Server.mk wildcardCert keyFile
 
   -- Client context trusts the wildcard cert as its only CA.
-  let clientCtxOk ← Context.Client.mk
-  clientCtxOk.configure wildcardCert true
-  let clientCtxFail ← Context.Client.mk
-  clientCtxFail.configure wildcardCert true
+  let clientCtxOk ← Context.Client.mk wildcardCert true
+  let clientCtxFail ← Context.Client.mk wildcardCert true
 
   -- Part A: sub.test.local should match *.test.local → handshake succeeds.
   let serverA ← Server.mk serverCtx
@@ -278,12 +268,10 @@ def testWildcardSAN (addrOk addrFail : SocketAddress) (wildcardCert keyFile : St
 
 def testMultiSAN (addrAlpha addrBeta addrGamma : SocketAddress)
     (multiCert keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure multiCert keyFile
+  let serverCtx ← Context.Server.mk multiCert keyFile
 
   let mkClient : IO Context.Client := do
-    let ctx ← Context.Client.mk
-    ctx.configure multiCert true
+    let ctx ← Context.Client.mk multiCert true
     return ctx
 
   -- alpha.test.local → matches first SAN → success.
@@ -334,10 +322,8 @@ def testMultiSAN (addrAlpha addrBeta addrGamma : SocketAddress)
 
 def testConcurrentContextReuse (addr : SocketAddress) (certFile keyFile : String) :
     IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure certFile true
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk certFile true
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -374,12 +360,10 @@ def testConcurrentContextReuse (addr : SocketAddress) (certFile keyFile : String
 
 def testExpiredCertRejected (addr : SocketAddress) (expiredCert keyFile : String) :
     IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure expiredCert keyFile
+  let serverCtx ← Context.Server.mk expiredCert keyFile
   -- The client trusts the expired cert as its only CA; the chain verifies but
   -- the validity period check must still fail.
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure expiredCert true
+  let clientCtx ← Context.Client.mk expiredCert true
 
   let server ← Server.mk serverCtx
   server.bind addr

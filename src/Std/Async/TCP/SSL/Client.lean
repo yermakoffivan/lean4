@@ -32,8 +32,10 @@ name.
 def mk (ctx : Context.Client) (serverName : Option String) : IO Client := do
   let native ← Socket.new
   let ssl ← Session.Client.mk ctx
+
   if let some host := serverName then
     ssl.setServerName host
+
   let broken ← IO.mkRef false
   return ⟨native, .client ssl, broken⟩
 

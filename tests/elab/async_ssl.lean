@@ -59,11 +59,9 @@ def clientTask (addr : SocketAddress) (clientCtx : Context.Client) : Async Unit 
   Async.ofPromise client.native.shutdown
 
 def testTCPSSL (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
+  let serverCtx ← Context.Server.mk certFile keyFile
 
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -78,10 +76,8 @@ def testTCPSSL (addr : SocketAddress) (certFile keyFile : String) : IO Unit := d
   cliTask.block
 
 def testMultipleRoundTrips (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -112,10 +108,8 @@ def testMultipleRoundTrips (addr : SocketAddress) (certFile keyFile : String) : 
   cliTask.block
 
 def testLargePayload (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   -- 64 KB + 1: spans multiple TLS records and multiple `send` chunks, with a final partial
   -- chunk. The position-dependent pattern catches dropped, duplicated, or reordered chunks
@@ -157,10 +151,8 @@ def testLargePayload (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   cliTask.block
 
 def testSendAll (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   -- Three chunks whose concatenation we can verify.
   let chunks  := #["alpha".toUTF8, "beta".toUTF8, "gamma".toUTF8]
@@ -197,10 +189,8 @@ def testSendAll (addr : SocketAddress) (certFile keyFile : String) : IO Unit := 
   cliTask.block
 
 def testSequentialConnections (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -230,10 +220,8 @@ def testSequentialConnections (addr : SocketAddress) (certFile keyFile : String)
     cliTask.block
 
 def testBidirectional (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -264,10 +252,8 @@ def testBidirectional (addr : SocketAddress) (certFile keyFile : String) : IO Un
   cliTask.block
 
 def testZeroByteSend (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -297,10 +283,8 @@ def testZeroByteSend (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   cliTask.block
 
 def testSendAllEmpty (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr
@@ -329,10 +313,8 @@ def testSendAllEmpty (addr : SocketAddress) (certFile keyFile : String) : IO Uni
   cliTask.block
 
 def testManySmallMessages (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let n := 50
   let server ← Server.mk serverCtx
@@ -373,10 +355,8 @@ def testManySmallMessages (addr : SocketAddress) (certFile keyFile : String) : I
   cliTask.block
 
 def testSendWithTimeout (addr : SocketAddress) (certFile keyFile : String) : IO Unit := do
-  let serverCtx ← Context.Server.mk
-  serverCtx.configure certFile keyFile
-  let clientCtx ← Context.Client.mk
-  clientCtx.configure "" false
+  let serverCtx ← Context.Server.mk certFile keyFile
+  let clientCtx ← Context.Client.mk "" false
 
   let server ← Server.mk serverCtx
   server.bind addr

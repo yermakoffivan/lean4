@@ -70,12 +70,6 @@ structure Agent.Pool where
   state : Mutex (Option Agent.Pool.Slot)
 
   /--
-  Compatibility setting retained for the builder API. The simplified pool always keeps
-  at most one session, and this value is clamped to at least `1`.
-  -/
-  maxPerHost : Nat
-
-  /--
   Configuration used when creating new sessions.
   -/
   config : Config
@@ -104,20 +98,19 @@ structure Agent.Pool where
 namespace Agent.Pool
 
 /-- Creates a pool using an internal `ConnectFn`. Used by `Client.Builder.build`. -/
-def new (config : Config := {}) (maxPerHost : Nat := 1) (connect : ConnectFn := ConnectFn.tcp)
+def new (config : Config := {}) (connect : ConnectFn := ConnectFn.tcp)
     (maxRetries : MaxRetries := 0) : Async Agent.Pool := do
   let state ← Mutex.new (none : Option Agent.Pool.Slot)
   let nextId ← Mutex.new (1 : UInt64)
-  let maxPerHost := if maxPerHost == 0 then 1 else maxPerHost
-  pure { state, maxPerHost, config, nextId, middlewares := #[], connect, maxRetries }
+  pure { state, config, nextId, middlewares := #[], connect, maxRetries }
 
 /--
 Creates a new, empty connection pool using a custom `Connector`.
 
 Supply any value whose type implements `Connector` (e.g. a TLS connector or a mock).
 -/
-def newWith [Connector α] (connector : α) (config : Config := {}) (maxPerHost : Nat := 1) : Async Agent.Pool :=
-  Agent.Pool.new config maxPerHost (ConnectFn.ofConnector connector)
+def newWith [Connector α] (connector : α) (config : Config := {}) : Async Agent.Pool :=
+  Agent.Pool.new config (ConnectFn.ofConnector connector)
 
 /--
 Acquires a fresh unique session ID.
@@ -200,9 +193,12 @@ def send {β : Type} [Coe β Body.Any] (pool : Agent.Pool) (origin : URI.Origin)
 
   let attempts := retries + 1
 
-  for attempt in 0...attempts do
+  -- A single attempt: connect, run the exchange, and arrange for the session to be retired when the
+  -- final response body reports an error. A failure here retires the session it opened (if any) and
+  -- rethrows; the retry policy lives entirely in the loop below. Connection establishment is part of
+  -- the attempt so that DNS/TCP failures (which occur before a `Session` exists) are retried too.
+  let attemptOnce : Async (Response Body.Stream) := do
     let session ← pool.getOrCreateSession origin
-
     try
       let exchange ← Agent.exchange {
         session
@@ -221,9 +217,14 @@ def send {β : Type} [Coe β Body.Any] (pool : Agent.Pool) (origin : URI.Origin)
         | .error _ => pool.retireSession exchange.origin exchange.session
 
       return exchange.response
-
     catch err =>
       pool.retireSession origin session
+      throw err
+
+  for attempt in 0...attempts do
+    try
+      return (← attemptOnce)
+    catch err =>
       -- Re-raise on the final attempt; earlier failures fall through to the next retry.
       if attempt + 1 ≥ attempts then
         throw err

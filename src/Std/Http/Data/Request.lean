@@ -196,9 +196,11 @@ def hostDefault (builder : Builder) (scheme : URI.Scheme) (host : URI.Host)
   if builder.line.headers.contains Header.Name.host then
     builder
   else
-    -- Derive the header value through the single canonical `host[:port]` formatter.
-    let hostValue := URI.Origin.hostHeader { scheme, host, port }
-    builder.header! "Host" hostValue
+    -- Derive the header value through the single canonical `host[:port]` formatter, using the typed
+    -- setter so a malformed value leaves the builder untouched instead of panicking like `header!`.
+    match Header.Value.ofString? (URI.Origin.hostHeader { scheme, host, port }) with
+    | some value => builder.header Header.Name.host value
+    | none => builder
 
 /--
 Inserts a typed extension value into the request being built.

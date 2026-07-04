@@ -51,13 +51,6 @@ structure Client.Builder where
   config : Config := {}
 
   /--
-  Requested maximum number of pooled connections per host.
-  The current pool implementation keeps one reusable connection total; this is retained for
-  API compatibility and clamped to at least `1`.
-  -/
-  maxPerHost : Nat := 4
-
-  /--
   Erased connector function. Set via `.connector`.
   -/
   connect : Client.ConnectFn := Client.ConnectFn.tcp
@@ -121,13 +114,6 @@ def userAgent (b : Client.Builder) (ua : String) : Client.Builder :=
   { b with config := { b.config with userAgent := Header.Value.ofString? ua } }
 
 /--
-Sets the requested maximum number of pooled connections per host.
-The current pool keeps one reusable connection total; values less than `1` are clamped to `1`.
--/
-def maxConnectionsPerHost (b : Client.Builder) (n : Nat) : Client.Builder :=
-  { b with maxPerHost := if n == 0 then 1 else n }
-
-/--
 Sets the maximum number of redirects to follow automatically.
 -/
 def maxRedirects (b : Client.Builder) (n : Nat) : Client.Builder :=
@@ -151,7 +137,7 @@ def maxConnectionRetries (b : Client.Builder) (n : Nat) : Client.Builder :=
 Builds the `Client`.
 -/
 def build (b : Client.Builder) : Async Client :=
-  Client.Agent.Pool.new b.config b.maxPerHost (connect := b.connect) (maxRetries := b.maxRetries)
+  Client.Agent.Pool.new b.config (connect := b.connect) (maxRetries := b.maxRetries)
 
 end Builder
 

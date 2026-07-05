@@ -98,27 +98,31 @@ def Pattern.isProof (p : Pattern) (i : Nat) : Bool := Id.run do
   let some varInfos := p.varInfos? | return false
   varInfos.argsInfo[i]!.isProof
 
+def isUVar (n : Name) : Bool := Id.run do
+  let .num p _ := n | return false
+  return p == uvarPrefix
+
 def isUVar? (n : Name) : Option Nat := Id.run do
   let .num p idx := n | return none
   unless p == uvarPrefix do return none
   return some idx
 
 /-- Helper function for implementing `mkPatternFromDecl` and `mkEqPatternFromDecl` -/
-def preprocessDeclPattern (declName : Name) : MetaM (List Name × Expr) := do
+def preprocessDeclPattern (declName : Name) (zetaReduceLHSOnly := false) : MetaM (List Name × Expr) := do
   let info ← getConstInfo declName
   let levelParams := info.levelParams.mapIdx fun i _ => Name.num uvarPrefix i
   let us := levelParams.map mkLevelParam
   let type ← instantiateTypeLevelParams info.toConstantVal us
-  let type ← preprocessType type
+  let type ← preprocessType type (zetaReduceLHSOnly := zetaReduceLHSOnly)
   let type ← normalizeLevels type
   return (levelParams, type)
 
-def preprocessExprPattern (e : Expr) (levelParams₀ : List Name) : MetaM (List Name × Expr) := do
+def preprocessExprPattern (e : Expr) (levelParams₀ : List Name) (zetaReduceLHSOnly := false) : MetaM (List Name × Expr) := do
   let type ← inferType e
   let levelParams := levelParams₀.mapIdx fun i _ => Name.num uvarPrefix i
   let us := levelParams.map mkLevelParam
   let type := type.instantiateLevelParams levelParams₀ us
-  let type ← preprocessType type
+  let type ← preprocessType type (zetaReduceLHSOnly := zetaReduceLHSOnly)
   let type ← normalizeLevels type
   return (levelParams, type)
 
@@ -237,8 +241,8 @@ For a theorem `∀ x₁ ... xₙ, type`, returns a pattern matching the first co
 with `n` pattern variables.
 -/
 @[inline]
-public def mkPatternFromDeclWithKey (declName : Name) (selectKey : Expr → MetaM (Expr × α)) : MetaM (Pattern × α) := do
-  let (levelParams, type) ← preprocessDeclPattern declName
+public def mkPatternFromDeclWithKey (declName : Name) (selectKey : Expr → MetaM (Expr × α)) (zetaReduceLHSOnly := false) : MetaM (Pattern × α) := do
+  let (levelParams, type) ← preprocessDeclPattern declName zetaReduceLHSOnly
   mkPatternFromTypeWithKey levelParams type selectKey
 
 /--
@@ -246,8 +250,8 @@ Like `mkPatternFromDeclWithKey`, but for a complex proof expression instead of t
 theorem.
 -/
 @[inline]
-public def mkPatternFromExprWithKey (e : Expr) (levelParams : List Name := []) (selectKey : Expr → MetaM (Expr × α)) : MetaM (Pattern × α) := do
-  let (levelParams, type) ← preprocessExprPattern e levelParams
+public def mkPatternFromExprWithKey (e : Expr) (levelParams : List Name := []) (selectKey : Expr → MetaM (Expr × α)) (zetaReduceLHSOnly := false) : MetaM (Pattern × α) := do
+  let (levelParams, type) ← preprocessExprPattern e levelParams zetaReduceLHSOnly
   mkPatternFromTypeWithKey levelParams type selectKey
 
 /--
@@ -262,7 +266,7 @@ For a theorem `∀ x₁ ... xₙ, lhs = rhs`, returns a pattern matching `lhs` w
 Throws an error if the theorem's conclusion is not an equality.
 -/
 public def mkEqPatternFromDecl (declName : Name) : MetaM (Pattern × Expr) := do
-  mkPatternFromDeclWithKey declName fun type => do
+  mkPatternFromDeclWithKey declName (zetaReduceLHSOnly := true) fun type => do
     let_expr Eq _ lhs rhs := type | throwError "conclusion is not a equality{indentExpr type}"
     return (lhs, rhs)
 
@@ -377,7 +381,7 @@ This is an approximation. For example, we ignore the solution `?m := 0`.
 
 **Note**: The same approximation is used at LevelDefEq.lean
 -/
-private def tryApproxSelfMax (u v : Level) : UnifyM Bool := do
+def tryApproxSelfMax (u v : Level) : UnifyM Bool := do
   match u with
   | .max (.param uName) v'
   | .max v' (.param uName) =>
@@ -403,6 +407,27 @@ where
     let u ← decLevel? u
     let v ← decLevel? v
     return mkLevelMax' u v
+
+def hasUVar (u : Level) : Bool :=
+  match u with
+  | .succ u₁    => hasUVar u₁
+  | .max u₁ u₂ | .imax u₁ u₂ => hasUVar u₁ || hasUVar u₂
+  | .param name => isUVar name
+  | _ => false
+
+/--
+Returns `true` and add `u =?= v` to pending list IF
+- `u` is of the form `max .. ..` or `imax .. ..`, and
+- `u` contains `UVars`
+-/
+def tryPostponeMaxCnstr (u : Level) (v : Level) : UnifyM Bool := do
+  match u with
+  | .max u₁ u₂ | .imax u₁ u₂ =>
+    if hasUVar u₁ || hasUVar u₂ then
+      pushLevelPending u v
+      return true
+    return false
+  | _ => return false
 
 partial def processLevel (u : Level) (v : Level) : UnifyM Bool := do
   /-
@@ -456,6 +481,8 @@ where
       if let .succ v := v then
         if let some u := decLevel? u then
           return (← go u v)
+      if (← tryPostponeMaxCnstr u v) then
+        return true
       return false
 
 def processLevels (us : List Level) (vs : List Level) : UnifyM Bool := do
@@ -603,12 +630,26 @@ def tryAssignLevelMVar (u : Level) (v : Level) : MetaM Bool := do
   assignLevelMVar mvarId v
   return true
 
+def substAssignedMVarsAndNormalize (u : Level) : MetaM Level := do
+  unless (← hasAssignedLevelMVar u) do return u.normalize
+  let u ← instantiateLevelMVars u
+  return u.normalize
+
 /--
 Structural definitional equality for universe levels.
 Uses `tryApproxMaxMax` to handle `max` commutativity when one argument matches structurally.
 Attempts metavariable assignment in both directions if structural matching fails.
 -/
-def isLevelDefEqS (u : Level) (v : Level) : MetaM Bool := do
+partial def isLevelDefEqS (u : Level) (v : Level) : MetaM Bool := do
+  let tryNormalizeFirst (k : MetaM Bool) : MetaM Bool := do
+    /-
+    If `u` and `v` have assigned metavariables or can be normalized, apply substitutions and normalize.
+    Otherwise, execute `k`.
+    -/
+    let u' ← substAssignedMVarsAndNormalize u
+    let v' ← substAssignedMVarsAndNormalize v
+    if u' != u || v' != v then isLevelDefEqS u' v'
+    else k
   match u, v with
   | .param u, .param v => return u == v
   | .zero, .zero => return true
@@ -622,9 +663,13 @@ def isLevelDefEqS (u : Level) (v : Level) : MetaM Bool := do
   | .max u₁ u₂, .max v₁ v₂ =>
     if u₂ == v₁ then isLevelDefEqS u₁ v₂
     else if u₁ == v₂ then isLevelDefEqS u₂ v₁
-    else isLevelDefEqS u₁ v₁ <&&> isLevelDefEqS u₂ v₂
+    else tryNormalizeFirst (isLevelDefEqS u₁ v₁ <&&> isLevelDefEqS u₂ v₂)
   | .imax u₁ u₂, .imax v₁ v₂ => isLevelDefEqS u₁ v₁ <&&> isLevelDefEqS u₂ v₂
-  | _, _ => tryAssignLevelMVar u v <||> tryAssignLevelMVar v u
+  | _, _ =>
+    if (← tryAssignLevelMVar u v <||> tryAssignLevelMVar v u) then
+      return true
+    else
+      tryNormalizeFirst (return false)
 
 /--
 Structural definitional equality for lists of universe levels.
@@ -971,7 +1016,12 @@ def instantiateLevelParamsS (e : Expr) (paramNames : List Name) (us : List Level
 
 inductive MkPreResultResult where
   | failed
-  | success (mvarsToCheckType : Array MVarId)
+  /--
+  `instMVars` are the metavariables created for instance arguments that `trySynthInstance` could
+  not discharge. They may still be assigned while processing pending constraints; any that remain
+  unassigned mean the pattern was not fully instantiated (see `main`).
+  -/
+  | success (mvarsToCheckType : Array MVarId) (instMVars : Array MVarId)
 
 def mkPreResult : UnifyM MkPreResultResult := do
   let us ← (← get).uAssignment.toList.mapM fun
@@ -983,6 +1033,7 @@ def mkPreResult : UnifyM MkPreResultResult := do
   let tPending := (← get).tPending
   let mut args := #[]
   let mut mvarsToCheckType := #[]
+  let mut instMVars := #[]
   for h : i in *...eAssignment.size do
     if let .some val := eAssignment[i] then
       if tPending.contains i then
@@ -1005,12 +1056,15 @@ def mkPreResult : UnifyM MkPreResultResult := do
           continue
       let mvar ← mkFreshExprMVar type
       let mvar ← shareCommon mvar
+      if pattern.isInstance i then
+        -- Synthesis failed above; record the placeholder so `main` can verify it gets resolved.
+        instMVars := instMVars.push mvar.mvarId!
       if let some mask := (← read).pattern.checkTypeMask? then
         if mask[i]! then
           mvarsToCheckType := mvarsToCheckType.push mvar.mvarId!
       args := args.push mvar
   modify fun s => { s with args, us }
-  return .success mvarsToCheckType
+  return .success mvarsToCheckType instMVars
 
 def processPendingLevel : UnifyM Bool := do
   let uPending := (← get).uPending
@@ -1069,19 +1123,29 @@ abbrev UnifyM.run (pattern : Pattern) (unify : Bool) (zetaDelta : Bool) (k : Uni
 public structure MatchUnifyResult where
   us : List Level
   args : Array Expr
+  /--
+  Instance arguments that could not be synthesized, nor assigned while processing pending
+  constraints. `args` still holds a fresh, unassigned metavariable for each of them. A consumer that
+  splices `args` into a proof term (e.g. `BackwardRule.apply`) must treat a non-empty array as
+  failure; a purely structural matcher may ignore it.
+  -/
+  unresolvedInsts : Array MVarId := #[]
 
-def mkResult : UnifyM MatchUnifyResult := do
+def mkResult (unresolvedInsts : Array MVarId) : UnifyM MatchUnifyResult := do
   let s ← get
-  return { s with }
+  return { s with unresolvedInsts }
 
 def main (p : Pattern) (e : Expr) (unify : Bool) (zetaDelta : Bool) : SymM (Option (MatchUnifyResult)) :=
   UnifyM.run p unify zetaDelta do
     unless (← process p.pattern e) do return none
     match (← mkPreResult) with
     | .failed => return none
-    | .success mvarsToCheckType =>
+    | .success mvarsToCheckType instMVars =>
       unless (← processPending mvarsToCheckType) do return none
-      return some (← mkResult)
+      -- An instance may still be assigned while processing pending constraints; report only those
+      -- that remain unresolved so the caller decides whether that is fatal.
+      let unresolvedInsts ← instMVars.filterM fun m => return !(← m.isAssigned)
+      return some (← mkResult unresolvedInsts)
 
 /--
 Attempts to match expression `e` against pattern `p` using purely syntactic matching.
@@ -1094,8 +1158,9 @@ Matching fails if:
 - The term contains metavariables (use `unify?` instead)
 - Structural mismatch after reducible unfolding
 
-Instance arguments are deferred for later synthesis. Proof arguments are
-skipped via proof irrelevance.
+Instance arguments are synthesized (or assigned by unification). Any that cannot be resolved are
+reported in `MatchUnifyResult.unresolvedInsts` rather than silently left as loose metavariables in
+`args`. Proof arguments are skipped via proof irrelevance.
 -/
 public def Pattern.match? (p : Pattern) (e : Expr) (zetaDelta := true) : SymM (Option (MatchUnifyResult)) :=
   main p e (unify := false) (zetaDelta := zetaDelta)
@@ -1111,8 +1176,9 @@ Unlike `match?`, this handles terms containing metavariables by deferring
 constraints to Phase 2 unification. Use this when matching against goal
 expressions that may contain unsolved metavariables.
 
-Instance arguments are deferred for later synthesis. Proof arguments are
-skipped via proof irrelevance.
+Instance arguments are synthesized (or assigned by unification). Any that cannot be resolved are
+reported in `MatchUnifyResult.unresolvedInsts` rather than silently left as loose metavariables in
+`args`. Proof arguments are skipped via proof irrelevance.
 -/
 public def Pattern.unify? (p : Pattern) (e : Expr) (zetaDelta := true) : SymM (Option (MatchUnifyResult)) :=
   main p e (unify := true) (zetaDelta := zetaDelta)

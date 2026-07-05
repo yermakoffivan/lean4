@@ -187,7 +187,7 @@ range is read as it was before the copy. The argument {name}`a` is owned rather 
 make this possible, whereas passing the same array as both source and destination of
 {name}`ByteArray.copySlice` always copies the whole array.
 
-With {lean}`destOff = a.size` this appends the slice at `[srcOff, srcOff + len)` to the end of
+With {lean}`destOff ≥ a.size` this appends the slice at `[srcOff, srcOff + len)` to the end of
 {name}`a`, the analogue of Rust's {lit}`Vec::extend_from_within`; as with
 {name}`ByteArray.copySlice`, pass {lit}`exact := false` when growing the array repeatedly.
 -/

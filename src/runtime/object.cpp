@@ -2603,8 +2603,8 @@ extern "C" LEAN_EXPORT obj_res lean_byte_array_push(obj_arg a, uint8 b) {
     if (dest_off > dsz) {
         dest_off = dsz;
     }
-    // `src` and `dest` may alias, so `dest_off + len` is only bounded by twice the address
-    // space and can overflow on 32-bit systems; the result is then unrepresentable.
+    // Unlike pointer arrays, a byte array's size can exceed `LEAN_MAX_SMALL_NAT` (elements are
+    // 1 byte), so with `src`/`dest` aliasing `dest_off + len` can overflow on 32-bit systems.
     if (len > SIZE_MAX - dest_off)
         lean_internal_panic_out_of_memory();
     size_t new_dsz = std::max(dsz, dest_off + len);

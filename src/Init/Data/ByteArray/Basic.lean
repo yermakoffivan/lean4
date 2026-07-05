@@ -131,6 +131,15 @@ def isEmpty (s : ByteArray) : Bool :=
 Copies the slice at `[srcOff, srcOff + len)` in {name}`src` to `[destOff, destOff + len)` in
 {name}`dest`, growing {name}`dest` if necessary. If {name}`exact` is {name}`false`, the capacity
 will be doubled when grown.
+
+Out-of-bounds indices are clamped: if {name}`srcOff` is at or past the end of {name}`src`, then
+{name}`dest` is returned unchanged; {name}`len` is reduced so that the source slice ends at the
+end of {name}`src`; and if {name}`destOff` is at or past the end of {name}`dest`, the slice is
+appended at the end of {name}`dest`.
+
+When {name}`dest` is not shared, the copy is performed within its existing buffer if the capacity
+suffices, and with a single reallocation otherwise; the argument {name}`dest` is owned rather than
+borrowed to make this possible.
 -/
 @[extern "lean_byte_array_copy_slice"]
 def copySlice (src : @& ByteArray) (srcOff : Nat) (dest : ByteArray) (destOff len : Nat) (exact : Bool := true) : ByteArray :=

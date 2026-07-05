@@ -139,7 +139,8 @@ appended at the end of {name}`dest`.
 
 When {name}`dest` is not shared, the copy is performed within its existing buffer if the capacity
 suffices, and with a single reallocation otherwise; the argument {name}`dest` is owned rather than
-borrowed to make this possible.
+borrowed to make this possible. To copy a slice of an array to a different position within the
+same array, use {lit}`ByteArray.copyWithin`.
 -/
 @[extern "lean_byte_array_copy_slice"]
 def copySlice (src : @& ByteArray) (srcOff : Nat) (dest : ByteArray) (destOff len : Nat) (exact : Bool := true) : ByteArray :=

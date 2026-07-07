@@ -837,20 +837,38 @@ private def applyAbstractResult? (type : Expr) (abstResult? : Option AbstractMVa
   check result
   return some result
 
-/-- Returns the type class resolution cache entry for `key`; see `synthInstanceCacheExt`. -/
+/--
+Returns the type class resolution cache entry for `key` from the transient
+(`Meta.Cache.synthInstance`) or persistent (`synthInstanceCacheExt`) tier.
+-/
 private def findCachedResult? (key : SynthInstanceCacheKey) :
     MetaM (Option (Option AbstractMVarsResult)) := do
+  if let some result? := (← get).cache.synthInstance.find? key then
+    return some result?
   let some ref := synthInstanceCacheExt.getState (← getEnv) | return none
   return (← ref.get).find? key
 
 /--
-Inserts a result into the type class resolution cache. The insertion mutates the cache ref
-instead of the environment, so it survives environment rollbacks; see `synthInstanceCacheExt`.
+Inserts a result into the type class resolution cache: into the persistent tier if `persist` is
+true, and otherwise into the transient `Meta.Cache.synthInstance` tier, which has the lifetime of
+the current `Meta.State`.
+
+Only context-free entries may be persisted: the key must not contain metavariables and the result
+must be closed. Results with abstracted metavariables are only valid relative to the elaboration
+context that created them: their degrees of freedom (e.g. universe metavariables not determined
+by the key, cf. `Small`) are resolved by ambient constraints, so reusing them in a different
+context can produce incorrectly instantiated terms.
+
+Persistent insertions mutate the cache ref instead of the environment, so they survive
+environment rollbacks; see `synthInstanceCacheExt`.
 -/
-private def insertCachedResult (key : SynthInstanceCacheKey) (result? : Option AbstractMVarsResult) :
-    MetaM Unit := do
-  let some ref := synthInstanceCacheExt.getState (← getEnv) | return ()
-  ref.modify (·.insert key result?)
+private def insertCachedResult (key : SynthInstanceCacheKey) (result? : Option AbstractMVarsResult)
+    (persist : Bool) : MetaM Unit := do
+  if persist then
+    let some ref := synthInstanceCacheExt.getState (← getEnv) | return ()
+    ref.modify (·.insert key result?)
+  else
+    modifyCache fun c => { c with synthInstance := c.synthInstance.insert key result? }
 
 /--
 Auxiliary function for converting a cached `AbstractMVarsResult` returned by `SynthInstance.main` into an `Expr`.
@@ -873,18 +891,21 @@ private def applyCachedAbstractResult? (type : Expr) (abstResult? : Option Abstr
 /-- Helper function for caching synthesized type class instances. -/
 private def cacheResult (cacheKey : SynthInstanceCacheKey) (kind : PreprocessKind) (abstResult? : Option AbstractMVarsResult) (result? : Option Expr) : MetaM Unit := do
   -- **TODO**: simplify this function.
+  -- Only persist context-free entries: closed key (`.noMVars`) and closed result; see
+  -- `insertCachedResult`.
+  let keyClosed := kind matches .noMVars
   match abstResult? with
-  | none => insertCachedResult cacheKey none
+  | none => insertCachedResult cacheKey none (persist := keyClosed)
   | some abstResult =>
     if abstResult.numMVars == 0 && abstResult.paramNames.isEmpty && kind matches .noMVars | .mvarsNoOutputParams then
       match result? with
-      | none => insertCachedResult cacheKey none
+      | none => insertCachedResult cacheKey none (persist := keyClosed)
       | some result =>
         -- See `applyCachedAbstractResult?` If new metavariables have **not** been introduced,
         -- we don't need to perform extra checks again when reusing result.
-        insertCachedResult cacheKey (some { expr := result, paramNames := #[], mvars := #[] })
+        insertCachedResult cacheKey (some { expr := result, paramNames := #[], mvars := #[] }) (persist := keyClosed)
     else
-      insertCachedResult cacheKey (some abstResult)
+      insertCachedResult cacheKey (some abstResult) (persist := false)
 
 def synthInstanceCore? (type : Expr) (maxResultSize? : Option Nat := none) : MetaM (Option Expr) := do
   let opts ← getOptions

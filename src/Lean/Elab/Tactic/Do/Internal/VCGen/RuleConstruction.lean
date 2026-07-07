@@ -118,25 +118,31 @@ private partial def LatticeSplit.mkApplyEq
   | s :: ss' =>
     let some applyEq := c.applyEq
       | throwError "LatticeSplit.mkApplyEq requires a pointwise `applyEq`"
-    -- An operand is a function of the excess argument `s` when its domain is `s`'s type. Such
-    -- operands (`⊓`/`⇨`) descend one lattice level by being applied to `s`; state-independent
-    -- operands (`⌜·⌝`/`⊤`) stay put. When every operand is a function of `s`, the operator's result
-    -- lattice is determined by the operands, so the `_apply` lemma infers it; otherwise it is passed
-    -- explicitly as the (peeled) carrier.
+    -- Instantiate the `_apply` lemma with fresh metavariables and unify its equation LHS with the
+    -- operator applied to `s`, recovering the lemma's parameters by unification. This is agnostic to
+    -- the lemma's binder shape: a generic state-polymorphic `_apply` (`⊓`/`⇨`/`⌜·⌝`/`⊤`) and a
+    -- fixed-state unfolding lemma (e.g. `costConj_apply`) are handled the same way.
+    let opAppS := mkApp (← c.mkOperator params as resultType?) s
+    let applyEqConst ← mkConstWithFreshMVarLevels applyEq
+    let (mvars, _, eqTy) ← forallMetaTelescopeReducing (← Meta.inferType applyEqConst)
+    let some (_, lhs, _) := (← instantiateMVars eqTy).eq?
+      | throwError "LatticeSplit.mkApplyEq: `applyEq` {applyEq} does not conclude an equation"
+    unless ← isDefEq lhs opAppS do
+      throwError "LatticeSplit.mkApplyEq: `applyEq` {applyEq} LHS{indentExpr lhs}\n\
+        does not match{indentExpr opAppS}"
+    let step := mkAppN applyEqConst mvars
+    if ss'.isEmpty then
+      return step
+    -- An operand that is a function of `s` descends one lattice level by being applied to `s`;
+    -- a state-independent operand (`⌜·⌝`/`⊤`) stays put. Recurse on the remaining state args.
     let sTy ← Meta.inferType s
     let stateFns ← as.mapM fun a => do
       match ← whnf (← Meta.inferType a) with
       | .forallE _ dom _ _ => isDefEq dom sTy
       | _ => pure false
-    let allStateFns := !as.isEmpty && stateFns.all id
-    let rt := resultType?.map .bindingBody!
-    let args := as.push s |>.map some
-    let step ← mkAppOptM applyEq <| #[none, (if allStateFns then none else rt), none] ++ args
-    if ss'.isEmpty then
-      return step
     let stepLift ← liftEqByArgs step ss'
     let as := as.zipWith (fun a isFn => if isFn then mkApp a s else a) stateFns
-    let rest ← c.mkApplyEq params as ss' rt
+    let rest ← c.mkApplyEq params as ss' (resultType?.map .bindingBody!)
     mkEqTrans stepLift rest
 
 /-- Distribute a lattice connective through function applications via its `_apply` lemma,
@@ -471,7 +477,7 @@ private def mkSpecBackwardProof
   abstractMVars specApplied
 
 /--
-Normalize an instantiated equality spec `lhs = rhs` (both of type `info.m α`) to the `⊑ wp` form
+Normalize an instantiated equality spec `lhs = rhs` (both of type `info.M α`) to the `⊑ wp` form
 `wp rhs Q E ⊑ wp lhs Q E` by instantiating `wp_le_wp_of_eq` with fresh schematic `Q`/`E`.
 
 The schematic `Q`/`E` make the postcondition and exception-postcondition VCs collapse in
@@ -488,8 +494,8 @@ private def eqSpecToWp? (info : WPInfo) (xs : Array Expr) (eqPrf eqType : Expr) 
     | throwError "simp spec is not an equation: {eqType}"
   -- Recover the value type `α` and confirm the equation is in the goal's monad. `α` is typed at the
   -- monad's domain sort so the equation's element type stays well-formed.
-  let α ← mkFreshExprMVar (← inferType info.m).bindingDomain!
-  guard <| ← isDefEqGuarded eqα (mkApp info.m α)
+  let α ← mkFreshExprMVar (← inferType info.M).bindingDomain!
+  guard <| ← isDefEqGuarded eqα (mkApp info.M α)
   -- Pin the schematic instance and state metavariables by unifying the equation's LHS with the goal's
   -- concrete program, so dictionary projections in `rhs` reduce against the real instance.
   let _ ← show MetaM Bool from commitWhen <| isDefEqGuarded lhs info.prog
@@ -510,7 +516,7 @@ private def eqSpecToWp? (info : WPInfo) (xs : Array Expr) (eqPrf eqType : Expr) 
   -- Cast to the reduced RHS so the resulting `wp` rewrites onto the exposed operation.
   let eqPrf ← mkExpectedTypeHint eqPrf (← mkEq lhs rhs)
   -- Pin the monad and assertion instances from the goal's `wp` arguments. Inferring the monad from
-  -- the equation type alone would leave `m β =?= info.m γ` as an underdetermined flex-rigid problem,
+  -- the equation type alone would leave `m β =?= info.M γ` as an underdetermined flex-rigid problem,
   -- so non-monadic equations like `Option.getD.eq_1` would fail to unify. With `m` fixed, the value
   -- type is inferred from the equation proof.
   let specProof ← mkAppOptM ``Std.Internal.Do.wp_le_wp_of_eq <|
@@ -568,7 +574,7 @@ public def mkBackwardRuleForSplit
     (splitInfo : SplitInfo) (info : WPInfo) : MetaM BackwardRule := do
   -- The split value type is the goal's, so reuse the goal's program type and `WP` instance directly.
   let a := info.Value
-  let ma := info.progTy
+  let ma := info.Prog
   let prf ←
     splitInfo.withAbstract ma fun abstractInfo splitFVars => do
     -- Eta-reduce matcher alts for the backward rule pattern to avoid expensive

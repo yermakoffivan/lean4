@@ -92,10 +92,10 @@ public def VCGen.mkBackwardRules : MetaM VCGen.BackwardRules := do
 public structure VCGen.Context where
   /-- Pre-built backward rules used by `solve`. -/
   backwardRules : VCGen.BackwardRules
-  /-- The `@[frameproc]` registered for the goal program's monad, selected at frontend init. Supplies
-  the frame operator and its lattice split, consulted by `splitLatticeOp?` before the built-in
-  connectives so its own `conj` decomposes `pre ⊑ conj F rest`. -/
-  selectedFrameProc? : Option VCGen.FrameProc := none
+  /-- The `@[frameproc]` registry snapshot taken at frontend init. `solve` selects a procedure per
+  program node by the node's monad, and `splitLatticeOp?` consults its splits before the built-in
+  connectives so a frame operator's own `conj` decomposes `pre ⊑ conj F rest`. -/
+  frameProcs : VCGen.FrameProcs := {}
   /-- User-customizable simp methods used to pre-simplify hypotheses. -/
   hypSimpMethods : Option Sym.Simp.Methods := none
   /-- The `trivial` config option: when `true` (default), `Driver.emitVC` runs

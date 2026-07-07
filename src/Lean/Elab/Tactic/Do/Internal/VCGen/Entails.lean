@@ -64,6 +64,22 @@ public def reduceEPostHead? (goal : MVarId) (target α inst pre rhs : Expr) :
     let newTarget ← mkAppNS target.getAppFn #[α, inst, pre, rhs]
     return some (← goal.replaceTargetDefEq newTarget)
 
+/-- Refold a meet upper adjoint `upperAdjoint (meet F) Q s⃗` on the RHS of `pre ⊑ rhs` to the Heyting
+implication `(F ⇨ Q) s⃗`, rewriting `goal` and returning it with its new RHS, so it decomposes through
+the clean pointwise `⇨` split instead of generic point-framing. Returns `none` if the RHS is not a
+meet upper adjoint. -/
+private def refoldHimpUpperAdjoint? (goal : MVarId) (rhs : Expr) :
+    VCGenM (Option (MVarId × Expr)) :=
+  rhs.withApp fun head args => do
+    unless head.isConstOf ``Lean.Order.PreservesSup.upperAdjoint do return none
+    let some slice := args[2]? | return none
+    unless slice.isAppOf ``Lean.Order.meet do return none
+    let some Q := args[3]? | return none
+    let rhs' := mkAppN (← mkAppM ``Lean.Order.himp #[slice.appArg!, Q]) (args.extract 4 args.size)
+    let target ← goal.getType
+    let newTarget := mkAppN target.getAppFn (target.getAppArgs.set! 3 rhs')
+    return some (← goal.replaceTargetDefEq newTarget, rhs')
+
 /--
 Decompose a supported lattice connective (`⊓`, `⇨`, `⌜p⌝`, `⊤`) on the RHS of `pre ⊑ rhs` by
 applying its cached split rule, looked up from `latticeSplits` by head constant. Returns `none` if
@@ -72,36 +88,21 @@ the head is not a supported connective or its rule does not apply.
 An embedded proposition `⌜p⌝` is decomposed only when the precondition is `⊤`: its `⊤`-fixed split
 rule fails to apply otherwise, since turning `pre ⊑ ⌜p⌝` into the subgoal `p` drops `pre`.
 -/
-public partial def splitLatticeOp? (goal : MVarId) (rhs : Expr) :
-    VCGenM (Option (List MVarId)) :=
+public def splitLatticeOp? (goal : MVarId) (rhs : Expr) :
+    VCGenM (Option (List MVarId)) := do
+  -- Refold a meet upper adjoint to `F ⇨ Q` up front, so the dispatch below takes the clean `⇨` path.
+  let (goal, rhs) := (← refoldHimpUpperAdjoint? goal rhs).getD (goal, rhs)
   rhs.withApp fun head args => do
     let some headName := head.constName? | return none
     let ctx ← read
-    -- Refold the meet's upper adjoint `upperAdjoint (meet F) Q` to the Heyting implication `F ⇨ Q`,
-    -- so it decomposes through the clean pointwise `⇨` path instead of generic point-framing.
-    if headName == ``Lean.Order.PreservesSup.upperAdjoint then
-      if let some slice := args[2]? then
-        if slice.isAppOf ``Lean.Order.meet then
-          if let some Q := args[3]? then
-            let rhs' := mkAppN (← mkAppM ``Lean.Order.himp #[slice.appArg!, Q]) (args.extract 4 args.size)
-            let target ← goal.getType
-            let newTarget := mkAppN target.getAppFn (target.getAppArgs.set! 3 rhs')
-            return ← splitLatticeOp? (← goal.replaceTargetDefEq newTarget) rhs'
-    -- The selected frame operator `conj F R` decomposes through its registered `split`; every other
-    -- operator (including the generic residual wand `PreservesSup.upperAdjoint f b`) through the
-    -- built-in `latticeSplits`.
-    let customSplit? := ctx.selectedFrameProc?.bind fun fp =>
-      if fp.conj == headName then some fp.split else none
-    let some c := customSplit? <|> latticeSplits[headName]? | return none
-    let rule ←
-      if c.applyEq.isNone && c.numOperands == 0 then
-        -- A direct split applies `introThm` as-is; the operator is matched whole.
-        mkBackwardRuleForLatticeDirectCached c
-      else
-        let params := args.extract 2 (2 + c.numParams)
-        let as := args.extract (2 + c.numParams) (2 + c.numParams + c.numOperands)
-        let excessArgs := args.drop (2 + c.numParams + c.numOperands)
-        mkBackwardRuleForLatticeCached c params as excessArgs args[0]?
+    -- A registered frame operator `conj F R` decomposes through its `split`; every other operator
+    -- (including the generic residual wand `PreservesSup.upperAdjoint f b`) through the built-in
+    -- `latticeSplits`.
+    let some c := ctx.frameProcs.splits[headName]? <|> latticeSplits[headName]? | return none
+    let params := args.extract 2 (2 + c.numParams)
+    let as := args.extract (2 + c.numParams) (2 + c.numParams + c.numOperands)
+    let excessArgs := args.drop (2 + c.numParams + c.numOperands)
+    let rule ← mkBackwardRuleForLatticeCached c params as excessArgs args[0]?
     match ← rule.applyChecked goal with
     | .goals goals => return some goals
     | .failed => return none

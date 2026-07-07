@@ -280,23 +280,26 @@ private def withPatternElab (k : TermElabM α) : TermElabM α :=
 /-- Elaborate a program pattern term `p` against the program monad `m` (expected type `m _`, so
 overloaded heads resolve), returning its pattern variables (the collected metavariables: holes and
 synthetic holes) and the resulting `Sym.Pattern`. -/
-private def elabProgPattern (m : Expr) (p : Term) : TermElabM (Array Expr × Sym.Pattern) := do
-  let e ← instantiateMVars (← Term.elabTerm p (some (mkApp m (← mkFreshTypeMVar))))
+private def elabProgPattern (progTy : Expr) (p : Term) : TermElabM (Array Expr × Sym.Pattern) := do
+  -- A monad `m : Type → Type` expects the program at `m _` so its overloaded head resolves; a
+  -- deep-embedding program type is already saturated and is used directly.
+  let expectedTy ← if (← inferType progTy).isArrow
+    then pure (mkApp progTy (← mkFreshTypeMVar)) else pure progTy
+  let e ← instantiateMVars (← Term.elabTerm p (some expectedTy))
   let xs := (e.collectMVars {}).result.map Expr.mvar
   return (xs, ← mkUntilPattern xs e)
 
-/-- Build an `until` pattern (holes `_` allowed, as in `conv in $t`) against the goal program's monad
-`m`, using `m _` as the expected type so overloaded heads resolve. The holes become pattern
-variables. -/
-private def elabUntilPattern (m : Expr) (p : Term) : TermElabM Sym.Pattern :=
+/-- Build an `until` pattern (holes `_` allowed, as in `conv in $t`) against the goal program type
+`progTy` as expected type, so overloaded heads resolve. The holes become pattern variables. -/
+private def elabUntilPattern (progTy : Expr) (p : Term) : TermElabM Sym.Pattern :=
   withPatternElab <| withRef p do
-    return (← elabProgPattern m p).2
+    return (← elabProgPattern progTy p).2
 
-/-- Build a `frames` database against the goal program's monad `m`. Each alternative's program pattern
-(a head applied to binder/`_` arguments) uses `m _` as the expected type; a named binder `x` becomes a
-synthetic hole `?x` so its name can be recovered and bound to the matched argument when the frame term
-is elaborated in `solve`. -/
-private def elabFrameDB (m : Expr) (alts : Array Syntax) : TermElabM FrameDB :=
+/-- Build a `frames` database against the goal program type `progTy` as expected type. Each
+alternative's program pattern (a head applied to binder/`_` arguments) is elaborated at `progTy`; a
+named binder `x` becomes a synthetic hole `?x` so its name can be recovered and bound to the matched
+argument when the frame term is elaborated in `solve`. -/
+private def elabFrameDB (progTy : Expr) (alts : Array Syntax) : TermElabM FrameDB :=
   withPatternElab do
     let mut tree : DiscrTree Nat := .empty
     let mut entries : Array FrameEntry := #[]
@@ -311,7 +314,7 @@ private def elabFrameDB (m : Expr) (alts : Array Syntax) : TermElabM FrameDB :=
           pure (⟨Syntax.node .none ``Lean.Parser.Term.syntheticHole #[mkAtom "?", x.raw]⟩ : Term)
         | _ => `(_)
       let progPat ← `($head $argTerms*)
-      let (xs, pat) ← withRef alt <| elabProgPattern m progPat
+      let (xs, pat) ← withRef alt <| elabProgPattern progTy progPat
       let varNames ← xs.mapM fun x => do
         let nm := (← x.mvarId!.getDecl).userName
         return if nm.isAnonymous then none else some nm
@@ -333,24 +336,20 @@ private def parseArgs (stx : Syntax) (goal : MVarId) : TermElabM ParsedArgs := g
   -- explicit `(elimLets := true)` at the syntax level (upstream `Config` can't
   -- distinguish "default true" from "user-set true"); not yet wired.
   let (ctx, scope) ← VCGen.mkContext stx[2] goal
-  -- The program monad, inferred once from the goal, drives frame-operator selection and elaboration
-  -- of the `frames`/`until` program patterns (their overloaded heads resolve against `m _`).
-  let m? ← VCGen.inferProgMonad? (← goal.getType)
+  -- The program type, inferred once from the goal, is the expected type for the `frames`/`until`
+  -- program patterns (so overloaded heads resolve). A goal with no program cannot be a `vcgen` goal.
+  let some progTy ← VCGen.inferProgType? (← goal.getType)
+    | throwError "vcgen: could not determine the program type of the goal"
   let frameProcs ← VCGen.getFrameProcs
-  let selectedFrameProc? := do
-    let m ← m?
-    frameProcs.procs[(← m.getAppFn.constName?)]?
-  let untilPat? ← if stx[3].isNone then pure none else do
-    let some m := m? | throwError "vcgen: could not infer the program monad for the `until` clause"
-    some <$> elabUntilPattern m ⟨stx[3][1]⟩
-  let frameDB ← if stx[4].isNone then pure ({} : FrameDB) else do
-    let some m := m? | throwError "vcgen: could not infer the program monad for the `frames` clause"
-    elabFrameDB m stx[4][1].getArgs
+  let untilPat? ← if stx[3].isNone then pure none
+    else some <$> elabUntilPattern progTy ⟨stx[3][1]⟩
+  let frameDB ← if stx[4].isNone then pure ({} : FrameDB)
+    else elabFrameDB progTy stx[4][1].getArgs
   let invariantAlts? ← parseInvariantMap stx[5]
   let hypSimpMethods ← elabSimplifyingAssumptions stx[6]
   let ctx := { ctx with
     hypSimpMethods,
-    selectedFrameProc?,
+    frameProcs,
     trivial := config.trivial,
     useJP := config.jp,
     errorOnMissingSpec := config.errorOnMissingSpec,

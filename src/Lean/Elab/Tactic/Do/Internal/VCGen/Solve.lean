@@ -99,23 +99,40 @@ private def getWPInfo? (rhs : Expr) : Option WPInfo :=
     else
       none
 
-/-- Infer the program monad `m` of a `vcgen` goal, so `frames`/`until` patterns elaborate against it
-and the `@[frameproc]` for the monad is selected before VC generation starts. Peels leading binders,
-then reads the program type from a bare `wp …` target, a `pre ⊑ wp …` entailment, or a `Triple`, and
-reduces it to expose the monad head. Returns `none` when the goal exposes no program. -/
-public def inferProgMonad? (goalType : Expr) : MetaM (Option Expr) := withReducible do
+/-- True iff `m` carries a `WPMonad m _ _` instance, i.e. it is a genuine weakest-precondition monad
+rather than a deep-embedding program type with a bespoke `WP`. The `Pred`/`EPred` `outParam`s are left
+as metavariables for instance search to fill; instance search runs at default transparency, while the
+caller reduces types at reducible transparency. -/
+private def isWPMonad (m : Expr) : MetaM Bool := withDefault do
+  try
+    let wpm ← mkConstWithFreshMVarLevels ``Std.Internal.Do.WPMonad
+    let (args, _, _) ← forallMetaTelescopeReducing (← inferType wpm)
+    unless ← isDefEq args[0]! m do return false
+    return (← synthInstance? (mkAppN wpm args)).isSome
+  catch _ => return false
+
+/-- Infer the program type of a `vcgen` goal, the key for frame-procedure selection and the expected
+type for elaborating `frames`/`until` patterns. Peels leading binders, then reads the program type
+from a bare `wp …` target, a `pre ⊑ wp …` entailment, or a `Triple`. When the program type is `m α`
+with `m` a `WPMonad`, the monad `m` is returned (frameprocs are keyed by monad); otherwise the whole
+program type is returned, so deep embeddings key on their own head. Returns `none` when the goal
+exposes no program. -/
+public def inferProgType? (goalType : Expr) : MetaM (Option Expr) := withReducible do
   forallTelescopeReducing goalType fun _ body => do
     let progTy? : Option Expr :=
       if let some info := getWPInfo? body then
-        some info.progTy
+        some info.Prog
       else if let some (_, _, _, rhs) := body.app4? ``Lean.Order.PartialOrder.rel then
-        (getWPInfo? rhs).map (·.progTy)
+        (getWPInfo? rhs).map (·.Prog)
       else
         body.withApp fun head args =>
           if head.isConstOf ``Std.Internal.Do.Triple && args.size ≥ 3 then some args[2]! else none
     let some progTy := progTy? | return none
     let progTy ← whnf progTy
-    return some (if progTy.isApp then progTy.appFn! else progTy)
+    if progTy.isApp then
+      if ← isWPMonad progTy.appFn! then
+        return some progTy.appFn!
+    return some progTy
 
 /-- Strategy 3b: turn a bare `wp` application target (a `Prop`) into `⊤ ⊑ wp …`. Entry-point
 goals produced by the `of_wp_run_eq` lemmas have this shape. -/
@@ -322,7 +339,7 @@ private def applySpec (scope : VCGen.Scope) (goal : MVarId) (info : WPInfo) :
   let (result, specs) ← SpecTheorems.findSpecs specs info.prog
   let scope := { scope with specs }
   match result with
-  | .error thms => stopOrErrorOnMissingSpec info.prog info.m thms
+  | .error thms => stopOrErrorOnMissingSpec info.prog info.M thms
   | .ok thm =>
   trace[Elab.Tactic.Do.vcgen] "Spec for {info.prog}: {thm.proof}"
   let some rule ←
@@ -334,7 +351,7 @@ private def applySpec (scope : VCGen.Scope) (goal : MVarId) (info : WPInfo) :
         target:{indentExpr (← goal.getType)}\n\
         Pred:{indentExpr info.Pred}\n\
         excessArgs: {info.excessArgs}"
-    | stopOrErrorOnMissingSpec info.prog info.m #[thm]
+    | stopOrErrorOnMissingSpec info.prog info.M #[thm]
   let .goals goals ← rule.applyChecked goal m!"spec rule for{indentExpr info.prog}"
     | do
       let ruleType ← Meta.inferType rule.expr
@@ -422,10 +439,10 @@ explicit `frames` clause first (elaborated at the operator's resource type), the
 procedure. -/
 private def matchFrameProc? (pre : Expr) (info : WPInfo) :
     VCGenM (Option (Expr × Expr)) := do
-  -- The frame procedure selected at init frames only nodes whose monad it registered for: a program
-  -- may reach sub-programs in a different monad (e.g. a `monadLift`ed base call), which it must not
-  -- frame.
-  let fp? := (← read).selectedFrameProc?.filter (info.m.getAppFn.constName? == some ·.prog)
+  -- Select the procedure registered for this node's monad. A program may reach sub-programs in
+  -- different monads (e.g. a `monadLift`ed base call), so the choice is per node, not per run.
+  let procs := (← read).frameProcs.procs
+  let fp? := info.M.getAppFn.constName?.bind (procs[·]?)
   let (op, resourceTy) ← match fp? with
     | some fp =>
       let op ← fp.op info
@@ -548,7 +565,7 @@ public def solve (scope : VCGen.Scope) (goal : MVarId) : VCGenM SolveResult := g
     trace[Elab.Tactic.Do.vcgen] "📜 Program: {info.prog}"
     -- Stop if the program matches the `until` pattern.
     if ← matchesUntilPattern info.prog then
-      return .stop (.untilPatternMatched info.m)
+      return .stop (.untilPatternMatched info.M)
     if let some g ← wpLet? goal info then
       VCGen.burnOne
       return .goals scope [g]

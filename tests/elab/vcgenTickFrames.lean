@@ -328,15 +328,6 @@ budget side goal and a cost-shifted residual, and the meet machinery finishes. -
 
 open Lean.Elab.Tactic.Do.Internal Lean.Elab.Tactic.Do.Internal.VCGen
 
-/-- The applied (`Prop`-level) budget split, used as a direct (`applyEq := none`) lattice split: to
-prove `pre ⊑ costConj c R n`, prove `pre ⊑ (c ≤ n) ⊓ R (n - c)`. The residual `R` runs with the
-budget `c` removed; the leftover meet is decomposed by the meet machinery. -/
-theorem le_costConj_point_apply {pre : Prop} (c n : Nat) (R : Nat → Prop)
-    (h : pre ⊑ ((c ≤ n) ⊓ R (n - c))) :
-    pre ⊑ costConj c R n := by
-  rw [costConj_apply, ofProp_prop_eq]
-  exact h
-
 /-- Exact spec for `tick`, registered so `vcgen` can decompose `tick` calls. -/
 @[spec] theorem tick_spec (post : Unit → Nat → Prop) :
     ⦃ fun n => post () (n + 1) ⦄ (tick : TickM Unit) ⦃ post ⦄ := by
@@ -356,9 +347,13 @@ def tickFrameProc : FrameInferenceProc := fun _R _pre info => do
   let some cost := info.excessArgs[0]? | return none
   return some cost
 
-/-- The direct lattice split for `costConj`, decomposing `pre ⊑ costConj c R n` via
-`le_costConj_point_apply` (no pointwise distribution). -/
-def costSplit : LatticeSplit := { introThm := ``le_costConj_point_apply }
+/-- The lattice split for `costConj`, an unfolding split: `costConj_apply` distributes it through the
+cost argument to `⌜r ≤ n⌝ ⊓ b (n - r)`, then `le_meet` decomposes the resulting meet. -/
+def costSplit : LatticeSplit where
+  mkOperator _ as _ := Meta.mkAppM ``costConj as
+  applyEq := some ``costConj_apply
+  introThm := ``le_meet
+  numOperands := 2
 
 /-- Register the cost frame inference procedure for `vcgen`, indexed by the `TickM` program type. -/
 @[frameproc] def tickFP : FrameProc where

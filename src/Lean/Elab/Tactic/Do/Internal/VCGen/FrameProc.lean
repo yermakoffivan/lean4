@@ -34,10 +34,10 @@ public structure VCGen.WPInfo where
 namespace VCGen.WPInfo
 
 /-- Program type argument of `wp` (e.g. `m α` or a non-monadic program type). -/
-public def progTy (info : WPInfo) : Expr := info.args[0]!
+public def Prog (info : WPInfo) : Expr := info.args[0]!
 /-- The monad of an `m α`-shaped program type, obtained by dropping the value type `α`. For a
 non-monadic program type the type itself is returned. -/
-public def m (info : WPInfo) : Expr :=
+public def M (info : WPInfo) : Expr :=
   if info.args[0]!.isApp then info.args[0]!.appFn! else info.args[0]!
 /-- Result/value type argument of `wp`. -/
 public def Value (info : WPInfo) : Expr := info.args[1]!
@@ -101,5 +101,20 @@ public structure VCGen.FrameProc where
   op : VCGen.WPInfo → MetaM Expr
   /-- The lattice split decomposing `conj F R` on the RHS of an entailment. -/
   split : VCGen.LatticeSplit
+
+/-- The registered frame inference procedures: the procedures keyed by the head constant of the
+program type (the monad) they frame, and their lattice splits keyed by frame-operator head
+constant. Selected per program node in `solve`, so a run touching several monads uses each monad's
+own procedure. -/
+public structure VCGen.FrameProcs where
+  procs : Std.HashMap Name VCGen.FrameProc := {}
+  /-- Splits for the frame operators `conj F R`, keyed by `conj` head. -/
+  splits : Std.HashMap Name VCGen.LatticeSplit := {}
+
+public instance : Inhabited VCGen.FrameProcs := ⟨{}⟩
+
+public def VCGen.FrameProcs.insert (s : FrameProcs) (fp : FrameProc) : FrameProcs :=
+  { procs := s.procs.insert fp.prog fp
+    splits := s.splits.insert fp.conj fp.split }
 
 end Lean.Elab.Tactic.Do.Internal

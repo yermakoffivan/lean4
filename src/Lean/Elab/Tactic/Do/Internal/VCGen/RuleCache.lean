@@ -83,17 +83,6 @@ public def mkBackwardRuleForLatticeCached (c : LatticeSplit) (params as excessAr
   modify fun st => { st with latticeBackwardRuleCache := st.latticeBackwardRuleCache.insert key rule }
   return rule
 
-/-- The backward rule for a direct split (`applyEq := none` without operands): `introThm` applied
-as-is, with its premises becoming subgoals. Cached in `latticeBackwardRuleCache` keyed by `introThm`. -/
-public def mkBackwardRuleForLatticeDirectCached (c : LatticeSplit) : VCGenM BackwardRule := do
-  let key := (c.introThm, (#[] : Array ExprPtr), 0)
-  let s := (← get).latticeBackwardRuleCache
-  if let some rule := s[key]? then return rule
-  let rule ← Sym.mkBackwardRuleFromDecl c.introThm
-  let rule ← rule.shareCommon
-  modify fun st => { st with latticeBackwardRuleCache := st.latticeBackwardRuleCache.insert key rule }
-  return rule
-
 end VCGen
 
 end Lean.Elab.Tactic.Do.Internal

@@ -37,16 +37,6 @@ unsafe def getFrameProcFromDeclImpl (declName : Name) : ImportM FrameProc := do
 @[implemented_by getFrameProcFromDeclImpl]
 opaque getFrameProcFromDecl (declName : Name) : ImportM FrameProc
 
-/-- The registered frame inference procedures, keyed by the head constant of the program type they
-frame. -/
-structure FrameProcs where
-  procs : Std.HashMap Name FrameProc := {}
-
-instance : Inhabited FrameProcs := ⟨{}⟩
-
-def FrameProcs.insert (s : FrameProcs) (_declName : Name) (fp : FrameProc) : FrameProcs :=
-  { procs := s.procs.insert fp.prog fp }
-
 abbrev FrameProcExtension := ScopedEnvExtension Name (Name × FrameProc) FrameProcs
 
 def toFrameProcEntry (declName : Name) : ImportM (Name × FrameProc) := do
@@ -58,7 +48,7 @@ builtin_initialize frameProcExt : FrameProcExtension ←
     mkInitial    := return {}
     ofOLeanEntry := fun _ declName => toFrameProcEntry declName
     toOLeanEntry := fun (declName, _) => declName
-    addEntry     := fun s (declName, fp) => s.insert declName fp
+    addEntry     := fun s (_declName, fp) => s.insert fp
   }
 
 /-- The frame inference procedures in scope. -/

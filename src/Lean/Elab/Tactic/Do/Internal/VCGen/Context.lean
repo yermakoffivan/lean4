@@ -160,38 +160,33 @@ public def VCGen.FrameInferenceProcRef : Type := FrameInferenceProcRefPointed.ty
 
 public instance : Nonempty VCGen.FrameInferenceProcRef := FrameInferenceProcRefPointed.property
 
-/-- A decomposition of a lattice logic connective on the RHS of an entailment. Custom frame operators
-register their own split here via `Context.customLatticeSplits`.
+/-- A decomposition of a lattice operator on the RHS of an entailment `pre ⊑ op … s⃗`. Custom frame
+operators register their own split here via `Context.customLatticeSplits`.
 
-A split with `applyLemma := some _` decomposes pointwise through the excess (state) arguments via
-`LatticeSplit.mkBackwardRuleForLattice`, chaining the `_apply` distribution lemma with the `⊑`-form
-split lemma; the remaining fields supply the structure it needs. A split with `applyLemma := none`
-applies `relLemma` directly as a backward rule, leaving the residual to the rules that follow; the
-pointwise-only fields are then unused. -/
+The operator's `⊑`-introduction rule `introThm` concludes `x ⊑ op` at the function level. How the
+excess (state) arguments `s⃗` are handled follows the shape of the split:
+
+- `applyEq := some _`: distribute `op … s⃗` pointwise through the state arguments via the `_apply`
+  equation, then apply `introThm`. Used by `⊓`/`⇨`/`⌜·⌝`/`⊤`.
+- `applyEq := none` with operands: point-frame the state arguments, gating the precondition to
+  `⌜·⃗ = s⃗⌝ ⊓ pre`, then apply `introThm` at the function level. Used by `PreservesSup.upperAdjoint`.
+- `applyEq := none` without operands: apply `introThm` directly as a backward rule; the remaining
+  fields are unused. -/
 public structure VCGen.LatticeSplit where
-  /-- The `⊑`-form split lemma decomposing `pre ⊑ connective`. Applied directly as a backward rule
-  when `applyLemma` is `none`. -/
-  relLemma : Name
-  /-- The pointwise `_apply` lemma distributing the connective through function application, or `none`
-  for a split that applies `relLemma` directly without pointwise distribution. -/
-  applyLemma : Option Name := none
-  /-- Rebuild the connective from its fixed parameters `params` (e.g. the frame operator of
-  `PreservesSup.upperAdjoint`), its operands `as`, and the optional lattice carrier type. Unused when
-  `applyLemma` is `none`. -/
-  mkLattice : Array Expr → Array Expr → Option Expr → MetaM Expr := fun _ _ _ =>
-    throwError "LatticeSplit.mkLattice is unavailable for a direct split (applyLemma := none)"
-  /-- Whether the operands are functions of the excess (state) arguments, and so must be applied to
-  each excess argument when descending one lattice level during `mkApplyEq`.
-
-  For `⊓`/`⇨` the operands are themselves elements of the function lattice (`(a ⊓ b) s = a s ⊓ b s`),
-  so each operand `a` becomes `a s`. For `⌜·⌝`/`⊤` the operand is reused unchanged
-  (`(⌜p⌝ : σ→β) s = (⌜p⌝ : β)`, `(⊤ : σ→β) s = (⊤ : β)`), so it must not be applied to `s`. -/
-  needApplyArgs : Bool := false
-  /-- The number of fixed parameters before the lattice operands: `1` for the frame operator of
-  `PreservesSup.upperAdjoint`, `0` for `⊓`/`⌜·⌝`/`⊤`. -/
+  /-- The `⊑`-form introduction rule decomposing `pre ⊑ op`: it concludes `_ ⊑ op` with the operand
+  subgoals as premises. -/
+  introThm : Name
+  /-- The pointwise `_apply` equation distributing the operator through function application, or
+  `none` to point-frame the state arguments (with operands) or apply `introThm` directly (without). -/
+  applyEq : Option Name := none
+  /-- Rebuild the operator from its fixed parameters `params`, its operands `as`, and the optional
+  lattice carrier type. Unused when `applyEq` is `none` and there are no operands. -/
+  mkOperator : Array Expr → Array Expr → Option Expr → MetaM Expr := fun _ _ _ =>
+    throwError "LatticeSplit.mkOperator is unavailable for a direct split (applyEq := none)"
+  /-- The number of fixed parameters before the operands: `0` for `⊓`/`⌜·⌝`/`⊤`/`upperAdjoint`. -/
   numParams : Nat := 0
-  /-- The number of explicit lattice operands the connective takes after its carrier type,
-  instance, and parameters: `2` for `⊓`/`⇨`, `1` for `⌜·⌝`, `0` for `⊤`. -/
+  /-- The number of explicit operands the operator takes after its carrier type, instance, and
+  parameters: `2` for `⊓`/`⇨`/`upperAdjoint`, `1` for `⌜·⌝`, `0` for `⊤`. -/
   numOperands : Nat := 0
 
 public structure VCGen.Context where
@@ -204,10 +199,6 @@ public structure VCGen.Context where
   `splitLatticeOp?` before the built-in connectives, so a custom frame proc can decompose
   `pre ⊑ conj F rest` for its own `conj`. -/
   customLatticeSplits : Std.HashMap Name VCGen.LatticeSplit := {}
-  /-- Lattice splits for the residual wands `PreservesSup.upperAdjoint conj F rest` of custom frame operators,
-  keyed by the `conj` head constant. Consulted by `splitLatticeOp?` (dispatching on the inner
-  operator) so a custom frame's magic wand decomposes instead of surfacing in a VC. -/
-  customImpSplits : Std.HashMap Name VCGen.LatticeSplit := {}
   /-- User-customizable simp methods used to pre-simplify hypotheses. -/
   hypSimpMethods : Option Sym.Simp.Methods := none
   /-- The `trivial` config option: when `true` (default), `Driver.emitVC` runs

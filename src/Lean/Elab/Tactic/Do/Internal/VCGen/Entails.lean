@@ -73,29 +73,34 @@ the head is not a supported connective or its rule does not apply.
 An embedded proposition `⌜p⌝` is decomposed only when the precondition is `⊤`: its `⊤`-fixed split
 rule fails to apply otherwise, since turning `pre ⊑ ⌜p⌝` into the subgoal `p` drops `pre`.
 -/
-public def splitLatticeOp? (goal : MVarId) (rhs : Expr) :
+public partial def splitLatticeOp? (goal : MVarId) (rhs : Expr) :
     VCGenM (Option (List MVarId)) :=
   rhs.withApp fun head args => do
     let some headName := head.constName? | return none
     let ctx ← read
-    -- For a residual `PreservesSup.upperAdjoint f b`, dispatch on the head of the slice `f`: a custom
-    -- frame's magic wand (`f = conj F`, head `conj`) goes to its own `impSplit`. The meet `⇨` is its
-    -- own head `himp`, handled by the branch below.
-    let custom? :=
-      if headName == ``Lean.Order.PreservesSup.upperAdjoint then
-        -- `@PreservesSup.upperAdjoint α inst f b`: the slice `f` is at index 2.
-        (args[2]?.bind (·.getAppFn.constName?)).bind (ctx.customImpSplits[·]?)
+    -- Refold the meet's upper adjoint `upperAdjoint (meet F) Q` to the Heyting implication `F ⇨ Q`,
+    -- so it decomposes through the clean pointwise `⇨` path instead of generic point-framing.
+    if headName == ``Lean.Order.PreservesSup.upperAdjoint then
+      if let some slice := args[2]? then
+        if slice.isAppOf ``Lean.Order.meet then
+          if let some Q := args[3]? then
+            let rhs' := mkAppN (← mkAppM ``Lean.Order.himp #[slice.appArg!, Q]) (args.extract 4 args.size)
+            let target ← goal.getType
+            let newTarget := mkAppN target.getAppFn (target.getAppArgs.set! 3 rhs')
+            return ← splitLatticeOp? (← goal.replaceTargetDefEq newTarget) rhs'
+    -- A custom frame operator `conj F R` decomposes through its registered `split`; every other
+    -- operator (including the generic residual wand `PreservesSup.upperAdjoint f b`) through the
+    -- built-in `latticeSplits`.
+    let some c := ctx.customLatticeSplits[headName]? <|> latticeSplits[headName]? | return none
+    let rule ←
+      if c.applyEq.isNone && c.numOperands == 0 then
+        -- A direct split applies `introThm` as-is; the operator is matched whole.
+        mkBackwardRuleForLatticeDirectCached c
       else
-        ctx.customLatticeSplits[headName]?
-    let some c := custom? <|> latticeSplits[headName]? | return none
-    let rule ← match c.applyLemma with
-      | none => mkBackwardRuleForLatticeDirectCached c
-      | some _ =>
         let params := args.extract 2 (2 + c.numParams)
         let as := args.extract (2 + c.numParams) (2 + c.numParams + c.numOperands)
         let excessArgs := args.drop (2 + c.numParams + c.numOperands)
-        let resultType? := if c.needApplyArgs then none else args[0]?
-        mkBackwardRuleForLatticeCached c params as excessArgs resultType?
+        mkBackwardRuleForLatticeCached c params as excessArgs args[0]?
     match ← rule.applyChecked goal with
     | .goals goals => return some goals
     | .failed => return none

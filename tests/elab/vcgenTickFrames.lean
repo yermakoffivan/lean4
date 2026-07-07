@@ -64,6 +64,11 @@ def costConj (r : Nat) (b : Nat → Prop) : Nat → Prop := fun n => r ≤ n ∧
 
 @[inherit_doc costConj] local infixr:67 " ⋆ " => costConj
 
+/-- Pointwise unfolding of `costConj`, so `grind` discharges a point-framed frame condition
+`costConj r (fun u => ⌜u = k⌝ ⊓ P) ⊑ Q`: `costConj r` shifts the point-mass `k` to `k + r`. -/
+@[grind =] theorem costConj_apply (r : Nat) (b : Nat → Prop) (n : Nat) :
+    costConj r b n = (r ≤ n ∧ b (n - r)) := rfl
+
 /-- The cost magic wand: the upper adjoint of the slice `costConj r`, a plain shift
 `r -⋆ b = fun m => b (m + r)`. -/
 local notation:60 lhs:61 " -⋆ " rhs:61 => Lean.Order.PreservesSup.upperAdjoint (costConj lhs) rhs
@@ -289,7 +294,7 @@ budget side goal and a cost-shifted residual, and the meet machinery finishes. -
 
 open Lean.Elab.Tactic.Do.Internal Lean.Elab.Tactic.Do.Internal.VCGen
 
-/-- The applied (`Prop`-level) budget split, used as a direct (`applyLemma := none`) lattice split: to
+/-- The applied (`Prop`-level) budget split, used as a direct (`applyEq := none`) lattice split: to
 prove `pre ⊑ costConj c R n`, prove `pre ⊑ (c ≤ n) ⊓ R (n - c)`. The residual `R` runs with the
 budget `c` removed; the leftover meet is decomposed by the meet machinery. -/
 theorem le_costConj_point_apply {pre : Prop} (c n : Nat) (R : Nat → Prop)
@@ -299,16 +304,6 @@ theorem le_costConj_point_apply {pre : Prop} (c n : Nat) (R : Nat → Prop)
   have hm := h hpre
   rw [meet_prop_eq_and] at hm
   exact hm
-
-/-- The applied budget split for the cost magic wand, the `costConj` *residual* backward rule: to
-prove `pre ⊑ (c -⋆ R) n`, prove `pre ⊑ R (n + c)`. The framed continuation runs with the budget `c`
-added back. -/
-theorem le_imp_costConj_point_apply {pre : Prop} (c n : Nat) (R : Nat → Prop)
-    (h : pre ⊑ R (n + c)) :
-    pre ⊑ PreservesSup.upperAdjoint (costConj c) R n := by
-  intro hpre
-  rw [costConj_imp]
-  exact h hpre
 
 /-- Exact spec for `tick`, registered so `vcgen` can decompose `tick` calls. -/
 @[spec] theorem tick_spec (post : Unit → Nat → Prop) :
@@ -327,11 +322,7 @@ def tickFrameProc : FrameInferenceProc := fun _R _pre info => do
 
 /-- The direct lattice split for `costConj`, decomposing `pre ⊑ costConj c R n` via
 `le_costConj_point_apply` (no pointwise distribution). -/
-def costSplit : LatticeSplit := { relLemma := ``le_costConj_point_apply }
-
-/-- The direct lattice split for the `costConj` residual wand, decomposing
-`pre ⊑ PreservesSup.upperAdjoint (costConj c) R n` via `le_imp_costConj_point_apply`. -/
-def costImpSplit : LatticeSplit := { relLemma := ``le_imp_costConj_point_apply }
+def costSplit : LatticeSplit := { introThm := ``le_costConj_point_apply }
 
 /-- Register the cost frame inference procedure for `vcgen`, indexed by the `TickM` program type. -/
 @[frameproc] def tickFP : FrameProc where
@@ -340,7 +331,6 @@ def costImpSplit : LatticeSplit := { relLemma := ``le_imp_costConj_point_apply }
   conj := ``costConj
   op := fun _ => pure (mkConst ``costConj)
   split := costSplit
-  impSplit := costImpSplit
 
 /-- End-to-end: plain `vcgen` infers the budget, applies the `costConj` gadget, fires the registered
 `costSplit`, and the meet machinery closes the residual. -/

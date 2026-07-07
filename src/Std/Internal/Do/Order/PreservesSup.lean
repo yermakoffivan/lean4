@@ -92,6 +92,14 @@ theorem frameClosure_frames {R : Type v} {β : Type w} (op : R → α → α) [�
 
 end PreservesSup
 
+/-- Frame a single state coordinate: from the function-order premise `(fun u => ⌜u = s⌝ ⊓ pre) ⊑ Q`
+conclude the point entailment `pre ⊑ Q s`. Instantiating the premise at `u := s` collapses
+`⌜s = s⌝ ⊓ pre` to `pre`. Iterating it over a state chain point-frames `pre ⊑ Q s₁ … sₙ` to the
+function-order goal `(fun u⃗ => ⌜u⃗ = s⃗⌝ ⊓ pre) ⊑ Q`. -/
+theorem le_apply_of_point_meet_le {σ : Type v} {β : Type w} [CompleteLattice β]
+    (s : σ) (pre : β) (Q : σ → β) (h : (fun u => ⌜u = s⌝ ⊓ pre) ⊑ Q) : pre ⊑ Q s :=
+  (CompleteLattice.ofProp_intro_r (s = s) pre (Q s)).mp (h s) rfl
+
 end Lean.Order
 
 end -- public section

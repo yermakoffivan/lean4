@@ -37,10 +37,9 @@ entailment `pre ⊑ e s₁ … sₙ`.
 
 /-- The lattice meet `⊓`. -/
 public def LatticeSplit.meet : LatticeSplit where
-  mkLattice _ as _ := mkAppM ``meet as
-  applyLemma := some ``meet_apply
-  relLemma := ``le_meet           -- le_meet (x y z) : x ⊑ y → x ⊑ z → x ⊑ y ⊓ z
-  needApplyArgs := true
+  mkOperator _ as _ := mkAppM ``meet as
+  applyEq := some ``meet_apply
+  introThm := ``le_meet           -- le_meet (x y z) : x ⊑ y → x ⊑ z → x ⊑ y ⊓ z
   numParams := 0
   numOperands := 2
 
@@ -48,40 +47,48 @@ public def LatticeSplit.meet : LatticeSplit where
 operator parameter; the apply lemma is the meet-specific `himp_apply` and the `⊑`-split is the
 upper-adjoint unit `le_upperAdjoint`, with the meet slice unified from the goal. -/
 public def LatticeSplit.himp : LatticeSplit where
-  mkLattice _ as _ := mkAppM ``Lean.Order.himp as
-  applyLemma := some ``himp_apply
-  relLemma := ``Lean.Order.le_himp  -- le_himp {a b x} (h : a ⊓ x ⊑ b) : x ⊑ a ⇨ b
-  needApplyArgs := true
+  mkOperator _ as _ := mkAppM ``Lean.Order.himp as
+  applyEq := some ``himp_apply
+  introThm := ``Lean.Order.le_himp  -- le_himp {a b x} (h : a ⊓ x ⊑ b) : x ⊑ a ⇨ b
   numParams := 0
   numOperands := 2
 
 /-- The pure assertion embedding `⌜·⌝`. The `⊤`-fixed split lemma makes the rule apply only when the
 precondition is `⊤`, where turning `pre ⊑ ⌜p⌝` into the subgoal `p` is sound. -/
 public def LatticeSplit.ofProp : LatticeSplit where
-  mkLattice _ as resultType? :=
+  mkOperator _ as resultType? :=
     mkAppOptM ``Lean.Order.CompleteLattice.ofProp #[resultType?, none, some as[0]!]
-  applyLemma := some ``Lean.Order.CompleteLattice.ofProp_apply
-  relLemma := ``Lean.Order.top_le_ofProp -- top_le_ofProp (p) : p → ⊤ ⊑ ⌜p⌝
-  needApplyArgs := false
+  applyEq := some ``Lean.Order.CompleteLattice.ofProp_apply
+  introThm := ``Lean.Order.top_le_ofProp -- top_le_ofProp (p) : p → ⊤ ⊑ ⌜p⌝
   numParams := 0
   numOperands := 1
 
 /-- The lattice top `⊤`. Has no operands; `le_top` has no premise, so the rule closes the goal. -/
 public def LatticeSplit.top : LatticeSplit where
-  mkLattice _ _ resultType? := mkAppOptM ``Lean.Order.top #[resultType?, none]
-  applyLemma := some ``Lean.Order.top_apply
-  relLemma := ``le_top            -- le_top (x) : x ⊑ ⊤  (no premise ⇒ closes the goal)
-  needApplyArgs := false
+  mkOperator _ _ resultType? := mkAppOptM ``Lean.Order.top #[resultType?, none]
+  applyEq := some ``Lean.Order.top_apply
+  introThm := ``le_top            -- le_top (x) : x ⊑ ⊤  (no premise ⇒ closes the goal)
   numParams := 0
   numOperands := 0
 
-/-- The lattice connectives VCGen decomposes on the RHS of an entailment, keyed by head constant. -/
+/-- The magic-wand residual `PreservesSup.upperAdjoint f b`. Point-framing (`applyEq := none` with
+operands) gates the state chain onto the precondition, then the free unit `le_upperAdjoint` fires at
+the function level, leaving the framed condition `f (⌜·⃗ = s⃗⌝ ⊓ pre) ⊑ b`. -/
+public def LatticeSplit.upperAdjoint : LatticeSplit where
+  mkOperator _ as _ := mkAppM ``Lean.Order.PreservesSup.upperAdjoint as
+  applyEq := none
+  introThm := ``Lean.Order.PreservesSup.le_upperAdjoint
+  numParams := 0
+  numOperands := 2
+
+/-- The lattice operators VCGen decomposes on the RHS of an entailment, keyed by head constant. -/
 public def latticeSplits : Std.HashMap Name LatticeSplit :=
   .ofList [
     (``meet, .meet),
     (``Lean.Order.himp, .himp),
     (``Lean.Order.CompleteLattice.ofProp, .ofProp),
-    (``Lean.Order.top, .top)]
+    (``Lean.Order.top, .top),
+    (``Lean.Order.PreservesSup.upperAdjoint, .upperAdjoint)]
 
 /-- Lift an equality `lhs = rhs` to `(lhs args...) = (rhs args...)`. -/
 private def liftEqByArgs (eqPrf : Expr) (args : List Expr) : MetaM Expr := do
@@ -100,26 +107,35 @@ private def liftEqByArgs (eqPrf : Expr) (args : List Expr) : MetaM Expr := do
 Apply a pointwise `_apply` lemma repeatedly over all excess arguments, producing an equality at
 the fully applied level.
 
-Example (`c = .meet`, `c.applyLemma = ``meet_apply`, `as = #[a, b]`, `ss = [s₁, s₂]`): the resulting
+Example (`c = .meet`, `c.applyEq = ``meet_apply`, `as = #[a, b]`, `ss = [s₁, s₂]`): the resulting
 proof has type `((a ⊓ b) s₁ s₂) = (a s₁ s₂ ⊓ b s₁ s₂)`.
 -/
 private partial def LatticeSplit.mkApplyEq
     (c : LatticeSplit) (params : Array Expr)
     (as : Array Expr) (ss : List Expr) (resultType? : Option Expr := none) : MetaM Expr := do
   match ss with
-  | [] => mkEqRefl =<< c.mkLattice params as resultType?
+  | [] => mkEqRefl =<< c.mkOperator params as resultType?
   | s :: ss' =>
-    let some applyLemma := c.applyLemma
-      | throwError "LatticeSplit.mkApplyEq requires a pointwise `applyLemma`"
-    let args := as.push s |>.map some
+    let some applyEq := c.applyEq
+      | throwError "LatticeSplit.mkApplyEq requires a pointwise `applyEq`"
+    -- An operand is a function of the excess argument `s` when its domain is `s`'s type. Such
+    -- operands (`⊓`/`⇨`) descend one lattice level by being applied to `s`; state-independent
+    -- operands (`⌜·⌝`/`⊤`) stay put. When every operand is a function of `s`, the operator's result
+    -- lattice is determined by the operands, so the `_apply` lemma infers it; otherwise it is passed
+    -- explicitly as the (peeled) carrier.
+    let sTy ← Meta.inferType s
+    let stateFns ← as.mapM fun a => do
+      match ← whnf (← Meta.inferType a) with
+      | .forallE _ dom _ _ => isDefEq dom sTy
+      | _ => pure false
+    let allStateFns := !as.isEmpty && stateFns.all id
     let rt := resultType?.map .bindingBody!
-    let step ← mkAppOptM applyLemma <| #[none, rt, none] ++ args
+    let args := as.push s |>.map some
+    let step ← mkAppOptM applyEq <| #[none, (if allStateFns then none else rt), none] ++ args
     if ss'.isEmpty then
       return step
     let stepLift ← liftEqByArgs step ss'
-    -- Descend one lattice level: only connectives whose operands depend on the excess
-    -- arguments (see `LatticeSplit.needApplyArgs`) get their operands applied to `s`.
-    let as := if c.needApplyArgs then as.map (mkApp · s) else as
+    let as := as.zipWith (fun a isFn => if isFn then mkApp a s else a) stateFns
     let rest ← c.mkApplyEq params as ss' rt
     mkEqTrans stepLift rest
 
@@ -129,16 +145,43 @@ private partial def LatticeSplit.mkApplyEq
 private def LatticeSplit.mkDistributeEq
     (c : LatticeSplit) (params as ss : Array Expr) (resultType? : Option Expr := none) :
     MetaM (Expr × Expr) := do
-  let lat ← c.mkLattice params as resultType?
+  let lat ← c.mkOperator params as resultType?
   let goal := mkAppN lat ss
   let eqFun ← c.mkApplyEq params as ss.toList resultType?
   return (goal, eqFun)
 
 /--
-Creates a reusable backward rule for a lattice connective in `⊑` form.
-Chains distribution (`_apply`) with the split lemma (`le_meet`/`himp_complete`).
+Point-frame the state chain `ss` of a goal `pre ⊑ opAs s₁ … sₙ`: peel the innermost argument via
+`le_apply_of_point_meet_le`, gating the precondition to `fun u => ⌜u = sₙ⌝ ⊓ pre`, until the goal is
+the function-level `gate ⊑ opAs`, then apply the operator's `introThm`, leaving its operand subgoals
+as premises. Returns the proof of `pre ⊑ opAs s₁ … sₙ`.
+-/
+private partial def LatticeSplit.mkPointFrame
+    (c : LatticeSplit) (opAs pre : Expr) (ss : List Expr) : MetaM Expr := do
+  match ss with
+  | [] =>
+    let introRule ← mkConstWithFreshMVarLevels c.introThm
+    let (xs, _, body) ← forallMetaTelescope (← Meta.inferType introRule)
+    let target ← mkAppM ``PartialOrder.rel #[pre, opAs]
+    unless ← isDefEq body target do
+      throwError "LatticeSplit.mkPointFrame: `introThm` {c.introThm} does not conclude {target}"
+    return mkAppN introRule xs
+  | _ =>
+    let s := ss.getLast!
+    let init := ss.dropLast
+    let Q := mkAppN opAs init.toArray
+    let preTy ← Meta.inferType pre
+    let gate ← withLocalDeclD `u (← Meta.inferType s) fun u => do
+      let ofp ← mkAppOptM ``Lean.Order.CompleteLattice.ofProp #[preTy, none, ← mkEq u s]
+      mkLambdaFVars #[u] (← mkAppM ``Lean.Order.meet #[ofp, pre])
+    let h ← c.mkPointFrame opAs gate init
+    mkAppM ``Lean.Order.le_apply_of_point_meet_le #[s, pre, Q, h]
 
-For `⊓`, produces:
+/--
+Creates a reusable backward rule for a lattice operator in `⊑` form.
+
+With `applyEq := some _`, distributes the operator through the state arguments (`_apply`) and chains
+the introduction rule (`le_meet`/`le_himp`/…). For `⊓`, produces:
 ```
 ∀ (a b : l) (s₁ : σ₁) ... (sₙ : σₙ) (pre : l'),
   pre ⊑ a s₁...sₙ → pre ⊑ b s₁...sₙ → pre ⊑ (a ⊓ b) s₁...sₙ
@@ -147,6 +190,12 @@ For `⇨`, produces:
 ```
 ∀ (a b : l) (s₁ : σ₁) ... (sₙ : σₙ) (pre : l'),
   a s₁...sₙ ⊓ pre ⊑ b s₁...sₙ → pre ⊑ (a ⇨ b) s₁...sₙ
+```
+With `applyEq := none`, point-frames the state arguments onto the precondition. For
+`PreservesSup.upperAdjoint`, produces:
+```
+∀ (f b : l) (s₁ : σ₁) ... (sₙ : σₙ) (pre : l'),
+  f (fun u⃗ => ⌜u⃗ = s⃗⌝ ⊓ pre) ⊑ b → pre ⊑ upperAdjoint f b s₁...sₙ
 ```
 Works for any `CompleteLattice`, not just `Prop`.
 -/
@@ -159,29 +208,29 @@ public def LatticeSplit.mkBackwardRuleForLattice
   let ss ← excessArgs.mapM fun arg => do
     mkFreshExprMVar (userName := `s) (← Meta.inferType arg)
 
-  let (goal, eqGoalDistributed) ← c.mkDistributeEq params as ss resultType?
-
-  let goalTy ← Meta.inferType goal
   -- The precondition is a fresh metavariable that becomes a universally quantified parameter of
   -- the rule.
-  let pre ← mkFreshExprMVar (userName := `Pre) goalTy
-
-  -- Lift equality through `pre ⊑ ·`: (pre ⊑ goal) = (pre ⊑ distributed)
-  -- Use partial application (not lambda) to avoid beta redexes
-  let relPreGoal ← mkAppM ``PartialOrder.rel #[pre]
-  let relEq ← mkCongrArg relPreGoal eqGoalDistributed
-  let relEqSymm ← mkEqSymm relEq
-  -- eqMp : (pre ⊑ distributed) → (pre ⊑ goal)
-  let eqMp ← mkAppM ``Eq.mp #[relEqSymm]
-
-  -- Instantiate the split lemma (le_meet / himp_complete / top_le_ofProp / le_top) via telescope
-  let splitLemma ← mkConstWithFreshMVarLevels c.relLemma
-  let (xs, _, body) ← forallMetaTelescope (← Meta.inferType splitLemma)
-  -- Unify conclusion with eqMp's domain to assign param mvars
-  unless ← isDefEq body (← Meta.inferType eqMp).bindingDomain! do
-    throwError "Expected {← Meta.inferType eqMp}.bindingDomain! = {← Meta.inferType body}"
-  -- Compose (abstractMVars handles instantiation of assigned mvars)
-  let prf := mkApp eqMp (mkAppN splitLemma xs)
+  let prf ← match c.applyEq with
+    | some _ =>
+      let (goal, eqGoalDistributed) ← c.mkDistributeEq params as ss resultType?
+      let pre ← mkFreshExprMVar (userName := `Pre) (← Meta.inferType goal)
+      -- Lift equality through `pre ⊑ ·`: (pre ⊑ goal) = (pre ⊑ distributed). Use partial
+      -- application (not lambda) to avoid beta redexes.
+      let relPreGoal ← mkAppM ``PartialOrder.rel #[pre]
+      let relEqSymm ← mkEqSymm (← mkCongrArg relPreGoal eqGoalDistributed)
+      -- eqMp : (pre ⊑ distributed) → (pre ⊑ goal)
+      let eqMp ← mkAppM ``Eq.mp #[relEqSymm]
+      -- Instantiate the introduction rule (le_meet / le_himp / top_le_ofProp / le_top) via telescope
+      -- and unify its conclusion with eqMp's domain to assign the operand mvars.
+      let introRule ← mkConstWithFreshMVarLevels c.introThm
+      let (xs, _, body) ← forallMetaTelescope (← Meta.inferType introRule)
+      unless ← isDefEq body (← Meta.inferType eqMp).bindingDomain! do
+        throwError "Expected {← Meta.inferType eqMp}.bindingDomain! = {← Meta.inferType body}"
+      pure <| mkApp eqMp (mkAppN introRule xs)
+    | none =>
+      let opAs ← c.mkOperator params as resultType?
+      let pre ← mkFreshExprMVar (userName := `Pre) (← Meta.inferType (mkAppN opAs ss))
+      c.mkPointFrame opAs pre ss.toList
 
   let res ← abstractMVars prf
   mkBackwardRuleFromExpr res.expr res.paramNames.toList

@@ -1,0 +1,3 @@
+forward_type_reference_collision.lean:7:22-7:47: error: `forward_type_reference%` cannot create `A.FwdRef`: a declaration with that name already exists
+forward_type_reference_collision.lean:10:22-10:47: error: `forward_type_reference%` cannot create `B.toFwdRef`: a declaration with that name already exists
+forward_type_reference_collision.lean:12:22-12:47: error: `forward_type_reference%` cannot generate `C.toFwdRef`: a declaration with that name already exists

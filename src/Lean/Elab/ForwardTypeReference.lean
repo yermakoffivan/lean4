@@ -58,12 +58,27 @@ def withArgTelescope [Inhabited α] (argEs : Array Expr) (k : Array Expr → Ter
     TermElabM α :=
   withArgTelescopeAux argEs k 0 #[]
 
+/-- The names generated for a forward reference to `base`: the stand-in family, its witness, and the
+two casts with their `implemented_by` shims. -/
+def fwdRefNames (base : Name) : Array Name :=
+  #[base ++ `FwdRefPointed, base ++ `FwdRef,
+    base ++ `toFwdRefImpl, base ++ `toFwdRef,
+    base ++ `FwdRef ++ `fromFwdRefImpl, base ++ `FwdRef ++ `fromFwdRef]
+
 /-- Lazily declare a `base.FwdRef` family abstracting the use-site argument telescope and returning
 `Type u`, backed by an opaque `base.FwdRefPointed : NonemptyType.{u}`. -/
 def mkFwdRefFamily (base : Name) (argEs : Array Expr) (u : Level) : TermElabM Name := do
   let refName := base ++ `FwdRef
-  if (← getEnv).contains refName then return refName
   let pointedName := base ++ `FwdRefPointed
+  if (← getEnv).contains refName then
+    -- reuse only our own family, marked by the opaque witness; a bare `base.FwdRef` is a collision
+    if (← getEnv).contains pointedName then return refName
+    else throwError "`forward_type_reference%` cannot create `{refName}`: a declaration with that \
+      name already exists"
+  for n in fwdRefNames base do
+    if (← getEnv).contains n then
+      throwError "`forward_type_reference%` cannot create `{n}`: a declaration with that name \
+        already exists"
   withArgTelescope argEs fun xs => do
     -- generalize the telescope's universe mvars (e.g. an enclosing auto-bound universe) to params
     let famType ← instantiateMVars (← levelMVarToParam (← mkForallFVars xs (mkSort (.succ u))))
@@ -81,8 +96,9 @@ def mkFwdRefFamily (base : Name) (argEs : Array Expr) (u : Level) : TermElabM Na
     }
     return refName
 
-/-- Record `base` as an unresolved forward reference, unless already pending. -/
-def registerForwardRef (base : Name) (ref : Syntax) : TermElabM Unit :=
+/-- Record `base` as an unresolved forward reference, unless already bridged or already pending. -/
+def registerForwardRef (base : Name) (ref : Syntax) : TermElabM Unit := do
+  if (← getEnv).contains (base ++ `toFwdRef) then return
   modifyEnv fun env => forwardRefExt.modifyState env fun s =>
     if s.any (·.base == base) then s else s.push { base, ref }
 
@@ -108,8 +124,14 @@ def fwdRefArity (refName : Name) : CommandElabM Nat :=
     return xs.size
 
 /-- Bridge `base.FwdRef` to a now-defined `base`: a `Nonempty` instance plus the two opaque casts,
-re-deriving the shared telescope as autobound implicits. -/
-def bridgeForwardRef (base : Name) : CommandElabM Unit := do
+re-deriving the shared telescope as autobound implicits. `refStx` locates a collision report. -/
+def bridgeForwardRef (base : Name) (refStx : Syntax) : CommandElabM Unit := do
+  for n in #[base ++ `toFwdRefImpl, base ++ `toFwdRef,
+             base ++ `FwdRef ++ `fromFwdRefImpl, base ++ `FwdRef ++ `fromFwdRef] do
+    if (← getEnv).contains n then
+      logErrorAt refStx m!"`forward_type_reference%` cannot generate `{n}`: a declaration with \
+        that name already exists"
+      return
   let ref := base ++ `FwdRef
   let n ← fwdRefArity ref
   -- name declarations relative to the current namespace so they land at `base.*`
@@ -132,15 +154,15 @@ report references that were never defined. -/
 def resolveForwardTypeReferences (stx : Syntax) : CommandElabM Unit := do
   let entries := forwardRefExt.getState (← getEnv)
   if entries.isEmpty then return
-  let resolved (base : Name) : CommandElabM Bool := do
-    return (← getEnv).contains (base ++ `toFwdRef)
   let mut remaining : Array Lean.Elab.Term.ForwardRefEntry := #[]
+  let mut toBridge : Array Lean.Elab.Term.ForwardRefEntry := #[]
   for entry in entries do
-    if (← getEnv).contains entry.base && !(← resolved entry.base) then
-      bridgeForwardRef entry.base
-    unless ← resolved entry.base do
-      remaining := remaining.push entry
+    if (← getEnv).contains entry.base then toBridge := toBridge.push entry
+    else remaining := remaining.push entry
+  -- drop the now-defined references before bridging, so a bridge error is not retried per command
   modifyEnv (forwardRefExt.setState · remaining)
+  for entry in toBridge do
+    bridgeForwardRef entry.base entry.ref
   if Parser.isTerminalCommand stx then
     for entry in remaining do
       logErrorAt entry.ref m!"unresolved `forward_type_reference%`: '{entry.base}' is never defined"

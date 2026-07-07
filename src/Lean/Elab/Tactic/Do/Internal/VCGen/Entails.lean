@@ -132,7 +132,7 @@ public def reduceTopAppliedPre? (goal : MVarId) (target pre : Expr) : SymM (Opti
   let mut curTy := carrier
   let mut curCL := instTop
   for x in args.extract 2 args.size do
-    let .forallE _ σ τ _ := curTy | return none
+    let .forallE _ σ τ _ ← instantiateMVarsIfMVarApp curTy | return none
     if τ.hasLooseBVars then return none
     unless curCL.isAppOf ``Lean.Order.instCompleteLatticePi do return none
     let .lam _ _ τCL _ := curCL.appArg! | return none

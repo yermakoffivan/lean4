@@ -433,12 +433,7 @@ is the base wp with the cost `n` held fixed. Registered so `vcgen` decomposes li
 
 def foo : TickT (StateM Nat) Unit := modify (fun x => x + 1)
 
-@[spec] theorem fooSpec :
-    ⦃ fun _ base => base = 0 ⦄
-    foo
-    ⦃ fun _ _ base => base = 1 ⦄ := by
+example : ⦃ fun _ base => base = 0 ⦄ foo ⦃ fun _ _ base => base = 1 ⦄ := by
   vcgen [foo] with finish
 
-@[spec] theorem fooTick :
-    foo ⏱ 0 := by
-  vcgen [foo] with finish
+example : foo ⏱ 0 := by vcgen [foo] with finish

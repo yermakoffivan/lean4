@@ -111,6 +111,11 @@ builtin_initialize lintersRef : IO.Ref (Array Linter) ← IO.mkRef #[]
 builtin_initialize moduleLintersRef : IO.Ref (Array ModuleLinter) ← IO.mkRef #[]
 builtin_initialize registerTraceClass `Elab.lint
 
+/-- Runs after each top-level command to bridge pending `forward_type_reference%` stand-ins to their
+now-defined targets. Installed by `Lean.Elab.ForwardTypeReference`. -/
+builtin_initialize forwardRefResolverRef : IO.Ref (Syntax → CommandElabM Unit) ←
+  IO.mkRef fun _ => pure ()
+
 def addLinter (l : Linter) : IO Unit := do
   let ls ← lintersRef.get
   lintersRef.set (ls.push l)
@@ -656,6 +661,11 @@ def elabCommandTopLevel (stx : Syntax) (cmds : Array Syntax := #[]) : CommandEla
     -- be the caller of this function and add new messages and info trees
     if let some snap := (← read).snap? then
       snap.new.resolve default
+
+  -- Bridge any `forward_type_reference%` whose target was just defined; env changes must persist,
+  -- so this runs outside the linters' `withoutModifyingEnv`.
+  withLogging do
+    (← forwardRefResolverRef.get) stx
 
   -- Run the linters, unless `#guard_msgs` is present, which is special and runs `elabCommandTopLevel` itself,
   -- so it is a "super-top-level" command. This is the only command that does this, so we just special case it here

@@ -784,6 +784,12 @@ In particular, it is like a unary operation with a fixed parameter `b`, where on
 @[builtin_term_parser] def unop := leading_parser
   "unop% " >> ident >> ppSpace >> termParser maxPrec
 
+/-- `forward_type_reference% T a b` is an opaque stand-in `T.FwdRef a b` for a type `T a b` whose
+definition comes later in the file, with casts `T.toFwdRef`/`T.FwdRef.fromFwdRef` bridging `T` and
+its stand-in generated once `T` is defined. -/
+@[builtin_term_parser] def forwardTypeReference := leading_parser
+  "forward_type_reference% " >> ident >> many (ppSpace >> termParser maxPrec)
+
 @[builtin_term_parser] def forInMacro := leading_parser
   "for_in% " >> termParser maxPrec >> termParser maxPrec >> ppSpace >> termParser maxPrec
 @[builtin_term_parser] def forInMacro' := leading_parser

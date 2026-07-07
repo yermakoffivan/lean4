@@ -10,6 +10,7 @@ public import Lean.Elab.Tactic.Do.VCGen.SuggestInvariant
 public import Lean.Elab.Tactic.Do.VCGen
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Context
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Driver
+public import Lean.Elab.Tactic.Do.Internal.VCGen.FrameProcAttr
 public import Lean.Meta.Sym.Simp.Attr
 public import Lean.Meta.Sym.Simp.ControlFlow
 public import Lean.Meta.Sym.Simp.EvalGround
@@ -116,11 +117,7 @@ public def mkContext (lemmas : Syntax) (goal : MVarId) (ignoreStarArg := false) 
         catch _ => continue
   let backwardRules ← VCGen.mkBackwardRules
   let allSpecThms ← extendWithSimpSpecs specThms simpThms
-  -- Registered `@[frameproc]` procedures contribute the lattice splits for their frame operators.
-  let frameProcs ← VCGen.getFrameProcs
-  let ctx : VCGen.Context :=
-    { backwardRules, frameInferenceProc := VCGen.matchFrame?.toRef,
-      customLatticeSplits := frameProcs.splits }
+  let ctx : VCGen.Context := { backwardRules }
   return (ctx, { specs := allSpecThms })
 
 end VCGen
@@ -255,7 +252,7 @@ private structure ParsedArgs where
   ctx : VCGen.Context
   scope : VCGen.Scope
   invariantAlts? : Option (Std.HashMap Nat Syntax)
-  frameDB : Deferred FrameDB
+  frameDB : FrameDB
 
 /-- Build a `Sym.Pattern` from `e` by abstracting the metavariables `xs` into pattern variables.
 `checkTypeMask?` is `none` because `until` holes appear as function arguments, whose types the
@@ -272,18 +269,13 @@ private def mkUntilPattern (xs : Array Expr) (e : Expr) : MetaM Sym.Pattern := d
   let varInfos? ← Sym.mkProofInstArgInfo? xs
   return { levelParams := [], varTypes, pattern, fnInfos, varInfos?, checkTypeMask? := none }
 
-/-- Capture the current elaboration context for a deferred pattern elaboration. The returned action
-runs `k` against the first program's monad `m`, restoring the captured local context, ignoring
-type-class failures, and disabling `sorry` elaboration, while keeping info trees so hovers work on
-the pattern. Shared by `elabUntilPattern` and `elabFrameDB`. -/
-private def withDeferredElab (k : Expr → TermElabM α) : TermElabM (Expr → MetaM α) := do
-  let lctx ← getLCtx
-  let localInsts ← getLocalInstances
-  return fun m =>
-    withLCtx lctx localInsts <| Term.TermElabM.run' <|
-      Term.withoutModifyingElabMetaStateWithInfo <|
-      withTheReader Term.Context ({ · with ignoreTCFailures := true }) <|
-      Term.withoutErrToSorry <| k m
+/-- Run a program-pattern elaboration in the goal context: ignore type-class failures, disable `sorry`
+elaboration, and restore the meta state afterwards while keeping info trees so hovers work on the
+pattern. Shared by `elabUntilPattern` and `elabFrameDB`. -/
+private def withPatternElab (k : TermElabM α) : TermElabM α :=
+  Term.withoutModifyingElabMetaStateWithInfo <|
+  withTheReader Term.Context ({ · with ignoreTCFailures := true }) <|
+  Term.withoutErrToSorry k
 
 /-- Elaborate a program pattern term `p` against the program monad `m` (expected type `m _`, so
 overloaded heads resolve), returning its pattern variables (the collected metavariables: holes and
@@ -293,20 +285,19 @@ private def elabProgPattern (m : Expr) (p : Term) : TermElabM (Array Expr × Sym
   let xs := (e.collectMVars {}).result.map Expr.mvar
   return (xs, ← mkUntilPattern xs e)
 
-/-- Build a deferred `until` pattern (holes `_` allowed, as in `conv in $t`). The pattern term is
-elaborated lazily when the first program is seen in `solve`, using that program's monad `m` as the
-expected type (`m _`) so overloaded heads resolve; the result is cached. The holes become pattern
+/-- Build an `until` pattern (holes `_` allowed, as in `conv in $t`) against the goal program's monad
+`m`, using `m _` as the expected type so overloaded heads resolve. The holes become pattern
 variables. -/
-private def elabUntilPattern (p : Term) : TermElabM (IO.Ref (Deferred Sym.Pattern)) := do
-  IO.mkRef <| .deferred <| ← withDeferredElab fun m => withRef p do
+private def elabUntilPattern (m : Expr) (p : Term) : TermElabM Sym.Pattern :=
+  withPatternElab <| withRef p do
     return (← elabProgPattern m p).2
 
-/-- Build a deferred `frames` database. Each alternative's program pattern (a head applied to
-binder/`_` arguments) is elaborated lazily against the first program's monad `m`, like the `until`
-pattern; a named binder `x` becomes a synthetic hole `?x` so its name can be recovered and bound to
-the matched argument when the frame term is elaborated in `solve`. -/
-private def elabFrameDB (alts : Array Syntax) : TermElabM (Deferred FrameDB) := do
-  return .deferred <| ← withDeferredElab fun m => do
+/-- Build a `frames` database against the goal program's monad `m`. Each alternative's program pattern
+(a head applied to binder/`_` arguments) uses `m _` as the expected type; a named binder `x` becomes a
+synthetic hole `?x` so its name can be recovered and bound to the matched argument when the frame term
+is elaborated in `solve`. -/
+private def elabFrameDB (m : Expr) (alts : Array Syntax) : TermElabM FrameDB :=
+  withPatternElab do
     let mut tree : DiscrTree Nat := .empty
     let mut entries : Array FrameEntry := #[]
     for h : i in [0:alts.size] do
@@ -342,12 +333,24 @@ private def parseArgs (stx : Syntax) (goal : MVarId) : TermElabM ParsedArgs := g
   -- explicit `(elimLets := true)` at the syntax level (upstream `Config` can't
   -- distinguish "default true" from "user-set true"); not yet wired.
   let (ctx, scope) ← VCGen.mkContext stx[2] goal
-  let untilPat? ← if stx[3].isNone then pure none else some <$> elabUntilPattern ⟨stx[3][1]⟩
-  let frameDB ← elabFrameDB (if stx[4].isNone then #[] else stx[4][1].getArgs)
+  -- The program monad, inferred once from the goal, drives frame-operator selection and elaboration
+  -- of the `frames`/`until` program patterns (their overloaded heads resolve against `m _`).
+  let m? ← VCGen.inferProgMonad? (← goal.getType)
+  let frameProcs ← VCGen.getFrameProcs
+  let selectedFrameProc? := do
+    let m ← m?
+    frameProcs.procs[(← m.getAppFn.constName?)]?
+  let untilPat? ← if stx[3].isNone then pure none else do
+    let some m := m? | throwError "vcgen: could not infer the program monad for the `until` clause"
+    some <$> elabUntilPattern m ⟨stx[3][1]⟩
+  let frameDB ← if stx[4].isNone then pure ({} : FrameDB) else do
+    let some m := m? | throwError "vcgen: could not infer the program monad for the `frames` clause"
+    elabFrameDB m stx[4][1].getArgs
   let invariantAlts? ← parseInvariantMap stx[5]
   let hypSimpMethods ← elabSimplifyingAssumptions stx[6]
   let ctx := { ctx with
     hypSimpMethods,
+    selectedFrameProc?,
     trivial := config.trivial,
     useJP := config.jp,
     errorOnMissingSpec := config.errorOnMissingSpec,

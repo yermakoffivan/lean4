@@ -7,7 +7,6 @@ module
 
 prelude
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Context
-public import Lean.Elab.Tactic.Do.Internal.VCGen.FrameProc
 public import Lean.Elab.Tactic.Do.Internal.VCGen.EPost
 public import Lean.Elab.Tactic.Do.Internal.VCGen.RuleCache
 public import Lean.Elab.Tactic.Do.Internal.VCGen.Util
@@ -88,10 +87,12 @@ public partial def splitLatticeOp? (goal : MVarId) (rhs : Expr) :
             let target ← goal.getType
             let newTarget := mkAppN target.getAppFn (target.getAppArgs.set! 3 rhs')
             return ← splitLatticeOp? (← goal.replaceTargetDefEq newTarget) rhs'
-    -- A custom frame operator `conj F R` decomposes through its registered `split`; every other
+    -- The selected frame operator `conj F R` decomposes through its registered `split`; every other
     -- operator (including the generic residual wand `PreservesSup.upperAdjoint f b`) through the
     -- built-in `latticeSplits`.
-    let some c := ctx.customLatticeSplits[headName]? <|> latticeSplits[headName]? | return none
+    let customSplit? := ctx.selectedFrameProc?.bind fun fp =>
+      if fp.conj == headName then some fp.split else none
+    let some c := customSplit? <|> latticeSplits[headName]? | return none
     let rule ←
       if c.applyEq.isNone && c.numOperands == 0 then
         -- A direct split applies `introThm` as-is; the operator is matched whole.

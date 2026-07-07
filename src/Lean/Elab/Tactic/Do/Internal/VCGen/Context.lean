@@ -8,6 +8,7 @@ module
 prelude
 public import Lean.Elab.Tactic.Do.VCGen.Basic
 public import Lean.Elab.Tactic.Do.Internal.VCGen.SpecDB
+public import Lean.Elab.Tactic.Do.Internal.VCGen.FrameProc
 public import Lean.Meta.Sym.Apply
 public import Lean.Meta.Sym.Simp.DiscrTree
 public import Lean.Meta.Sym.Simp.SimpM
@@ -24,36 +25,6 @@ The `VCGenM` monad: its read-only `Context` (a fixed bundle of pre-built
 (rule caches, accumulated invariants/VCs, simp cache).
 -/
 
-/-- A value elaborated lazily in `MetaM` against the monad of the first program encountered in
-`solve` (supplied as the expected type), then cached. Used for the `until` pattern
-(`Deferred Sym.Pattern`, behind an `IO.Ref` in the `Context`) and the `frames` database
-(`Deferred FrameDB`, in the `State`). -/
-public inductive Deferred (α : Type) where
-  /-- Not yet elaborated; `elabFn m` elaborates against the program monad `m`. -/
-  | deferred (elabFn : Expr → MetaM α)
-  /-- Already elaborated and cached. -/
-  | elaborated (value : α)
-
-/-- Force `d` against the program monad `m`, elaborating on first use and caching the result via
-`writeback`; later calls return the cached value. `writeback` stores into the slot `d` came from:
-an `IO.Ref.set` for the `until` pattern in the `Context`, a `modify` for the `frames` `State` field. -/
-public def Deferred.force {α : Type} {n : Type → Type} [Monad n] [MonadLiftT MetaM n]
-    (d : Deferred α) (writeback : Deferred α → n Unit) (m : Expr) : n α := do
-  match d with
-  | .elaborated a => return a
-  | .deferred elabFn =>
-    let a ← elabFn m
-    writeback (.elaborated a)
-    return a
-
-/-- Update an already-elaborated value in place; a not-yet-elaborated `d` is returned unchanged. -/
-public def Deferred.modifyElaborated {α : Type} (d : Deferred α) (f : α → α) : Deferred α :=
-  match d with
-  | .elaborated a => .elaborated (f a)
-  | d => d
-
-public instance {α : Type} [Inhabited α] : Inhabited (Deferred α) := ⟨.elaborated default⟩
-
 /-- A single elaborated `frames` alternative: its program pattern, the binder name of each pattern
 variable (`none` for `_`, index-aligned with `pat.varTypes`), the raw frame term (elaborated in the
 matched goal's context), the source position (a precedence tiebreak among matches, and its index
@@ -67,48 +38,14 @@ public structure FrameEntry where
   retired : Bool := false
   deriving Inhabited
 
-/-- The materialized frame database: program patterns keyed in a discrimination tree to the `srcIdx`
-of the matching alternative, alongside the alternatives themselves in source order. Materialized once
-in `State.frameDB`; thereafter only the `retired` flags of `entries` change. -/
+/-- The frame database: program patterns keyed in a discrimination tree to the `srcIdx` of the
+matching alternative, alongside the alternatives themselves in source order. Held in `State.frameDB`;
+the discrimination tree is fixed, and only the `retired` flags of `entries` change. -/
 public structure FrameDB where
   tree : DiscrTree Nat := .empty
   entries : Array FrameEntry := #[]
 
 public instance : Inhabited FrameDB := ⟨{}⟩
-
-/--
-Common metadata for a goal whose right-hand side is a weakest-precondition application
-`pre ⊑ wp Prog Value Pred EPred instAL instEAL instWP prog post epost s₁ ... sₙ`.
--/
-public structure VCGen.WPInfo where
-  /-- The `wp` function head, separated from its explicit core arguments. -/
-  head : Expr
-  /-- The ordered core arguments of the `wp` application:
-  `#[Prog, Value, Pred, EPred, instAL, instEAL, instWP, prog, post, epost]`. -/
-  args : Array Expr
-  /-- Extra arguments applied after `wp … prog post epost`, usually concrete state arguments. -/
-  excessArgs : Array Expr
-
-namespace VCGen.WPInfo
-
-/-- Program type argument of `wp` (e.g. `m α` or a non-monadic program type). -/
-public def progTy (info : WPInfo) : Expr := info.args[0]!
-/-- The monad of an `m α`-shaped program type, obtained by dropping the value type `α`. For a
-non-monadic program type the type itself is returned. -/
-public def m (info : WPInfo) : Expr :=
-  if info.args[0]!.isApp then info.args[0]!.appFn! else info.args[0]!
-/-- Result/value type argument of `wp`. -/
-public def Value (info : WPInfo) : Expr := info.args[1]!
-/-- Predicate/lattice type argument of `wp`. -/
-public def Pred (info : WPInfo) : Expr := info.args[2]!
-/-- Exception postcondition type argument of `wp`. -/
-public def EPred (info : WPInfo) : Expr := info.args[3]!
-/-- `WP` instance argument of `wp`. -/
-public def instWP (info : WPInfo) : Expr := info.args[6]!
-/-- Program expression classified by VCGen. -/
-public def prog (info : WPInfo) : Expr := info.args[7]!
-
-end VCGen.WPInfo
 
 /-- Pre-built backward rules used by `solve`. -/
 public structure VCGen.BackwardRules where
@@ -152,53 +89,13 @@ public def VCGen.mkBackwardRules : MetaM VCGen.BackwardRules := do
     meetTop := ← mkBackwardRuleFromDecl ``Std.Internal.Do.CompleteLattice.meet_top_le_of_le
   }
 
-private opaque FrameInferenceProcRefPointed : NonemptyType.{0}
-
-/-- Opaque handle to a `FrameInferenceProc` stored in `Context`. Breaks the type-level cycle
-between the procedure, which runs in `VCGenM`, and `VCGenM`, a reader over `Context`. -/
-public def VCGen.FrameInferenceProcRef : Type := FrameInferenceProcRefPointed.type
-
-public instance : Nonempty VCGen.FrameInferenceProcRef := FrameInferenceProcRefPointed.property
-
-/-- A decomposition of a lattice operator on the RHS of an entailment `pre ⊑ op … s⃗`. Custom frame
-operators register their own split here via `Context.customLatticeSplits`.
-
-The operator's `⊑`-introduction rule `introThm` concludes `x ⊑ op` at the function level. How the
-excess (state) arguments `s⃗` are handled follows the shape of the split:
-
-- `applyEq := some _`: distribute `op … s⃗` pointwise through the state arguments via the `_apply`
-  equation, then apply `introThm`. Used by `⊓`/`⇨`/`⌜·⌝`/`⊤`.
-- `applyEq := none` with operands: point-frame the state arguments, gating the precondition to
-  `⌜·⃗ = s⃗⌝ ⊓ pre`, then apply `introThm` at the function level. Used by `PreservesSup.upperAdjoint`.
-- `applyEq := none` without operands: apply `introThm` directly as a backward rule; the remaining
-  fields are unused. -/
-public structure VCGen.LatticeSplit where
-  /-- The `⊑`-form introduction rule decomposing `pre ⊑ op`: it concludes `_ ⊑ op` with the operand
-  subgoals as premises. -/
-  introThm : Name
-  /-- The pointwise `_apply` equation distributing the operator through function application, or
-  `none` to point-frame the state arguments (with operands) or apply `introThm` directly (without). -/
-  applyEq : Option Name := none
-  /-- Rebuild the operator from its fixed parameters `params`, its operands `as`, and the optional
-  lattice carrier type. Unused when `applyEq` is `none` and there are no operands. -/
-  mkOperator : Array Expr → Array Expr → Option Expr → MetaM Expr := fun _ _ _ =>
-    throwError "LatticeSplit.mkOperator is unavailable for a direct split (applyEq := none)"
-  /-- The number of fixed parameters before the operands: `0` for `⊓`/`⌜·⌝`/`⊤`/`upperAdjoint`. -/
-  numParams : Nat := 0
-  /-- The number of explicit operands the operator takes after its carrier type, instance, and
-  parameters: `2` for `⊓`/`⇨`/`upperAdjoint`, `1` for `⌜·⌝`, `0` for `⊤`. -/
-  numOperands : Nat := 0
-
 public structure VCGen.Context where
   /-- Pre-built backward rules used by `solve`. -/
   backwardRules : VCGen.BackwardRules
-  /-- The frame-inference procedure run on each spec-ready program to optionally produce a frame.
-  Initialized to the default `frames`-clause matcher; overriders wrap or replace it. -/
-  frameInferenceProc : VCGen.FrameInferenceProcRef
-  /-- Lattice splits for custom frame operators, keyed by head constant. Consulted by
-  `splitLatticeOp?` before the built-in connectives, so a custom frame proc can decompose
-  `pre ⊑ conj F rest` for its own `conj`. -/
-  customLatticeSplits : Std.HashMap Name VCGen.LatticeSplit := {}
+  /-- The `@[frameproc]` registered for the goal program's monad, selected at frontend init. Supplies
+  the frame operator and its lattice split, consulted by `splitLatticeOp?` before the built-in
+  connectives so its own `conj` decomposes `pre ⊑ conj F rest`. -/
+  selectedFrameProc? : Option VCGen.FrameProc := none
   /-- User-customizable simp methods used to pre-simplify hypotheses. -/
   hypSimpMethods : Option Sym.Simp.Methods := none
   /-- The `trivial` config option: when `true` (default), `Driver.emitVC` runs
@@ -228,9 +125,9 @@ public structure VCGen.Context where
   the parsed `inv<n>` numbers (out-of-order labels are supported). Empty when no
   `invariants` clause is provided or in `invariants?` (suggest) mode (handled separately). -/
   invariantAlts : Std.HashMap Nat Syntax := {}
-  /-- The `until` pattern: when `some ref`, VC generation stops and emits the current goal as a VC
-  once the program in `wp⟦e⟧` matches the (lazily elaborated) pattern, before applying a spec. -/
-  untilPat? : Option (IO.Ref (Deferred Sym.Pattern)) := none
+  /-- The `until` pattern: when `some pat`, VC generation stops and emits the current goal as a VC
+  once the program in `wp⟦e⟧` matches `pat`, before applying a spec. -/
+  untilPat? : Option Sym.Pattern := none
 
 public structure VCGen.Scope where
   /-- Spec database in scope: globals plus locals from in-scope hypotheses. -/
@@ -273,12 +170,12 @@ public structure VCGen.State where
   -/
   latticeBackwardRuleCache : Std.HashMap (Name × Array ExprPtr × Nat) BackwardRule := {}
   /--
-  The frame database, elaborated lazily against the first program's monad on first use. The
-  discrimination tree is fixed; a matched alternative is retired in place by setting
-  `FrameEntry.retired`, so each applies at most once (first match wins) and a program whose
-  alternative is retired is framed no further and reaches the normal `applySpec` path.
+  The frame database from the `frames` clause. The discrimination tree is fixed; a matched
+  alternative is retired in place by setting `FrameEntry.retired`, so each applies at most once
+  (first match wins) and a program whose alternative is retired is framed no further and reaches the
+  normal `applySpec` path.
   -/
-  frameDB : Deferred FrameDB := default
+  frameDB : FrameDB := {}
   /--
   Holes of type `Invariant` that have been generated so far.
   -/
@@ -309,25 +206,6 @@ public structure VCGen.State where
   inlineHandledInvariants : Std.HashSet Nat := {}
 
 public abbrev VCGenM := ReaderT VCGen.Context (StateRefT VCGen.State Grind.GrindM)
-
-/-- A frame-inference procedure: given the resource type `R` of the applicable frame operator
-`op : R → Pred → Pred`, the goal's precondition, and the `wp` metadata of a spec-ready program,
-optionally produce a frame `F : R` to apply. -/
-public abbrev VCGen.FrameInferenceProc := Expr → Expr → VCGen.WPInfo → VCGenM (Option Expr)
-
-instance : Nonempty VCGen.FrameInferenceProc := ⟨fun _ _ _ => pure none⟩
-
-unsafe abbrev VCGen.FrameInferenceProc.toRefImpl (p : VCGen.FrameInferenceProc) :
-    VCGen.FrameInferenceProcRef := unsafeCast p
-@[implemented_by VCGen.FrameInferenceProc.toRefImpl]
-public opaque VCGen.FrameInferenceProc.toRef (p : VCGen.FrameInferenceProc) :
-    VCGen.FrameInferenceProcRef
-
-unsafe abbrev VCGen.FrameInferenceProcRef.toProcImpl (r : VCGen.FrameInferenceProcRef) :
-    VCGen.FrameInferenceProc := unsafeCast r
-@[implemented_by VCGen.FrameInferenceProcRef.toProcImpl]
-public opaque VCGen.FrameInferenceProcRef.toProc (r : VCGen.FrameInferenceProcRef) :
-    VCGen.FrameInferenceProc
 
 namespace VCGen
 

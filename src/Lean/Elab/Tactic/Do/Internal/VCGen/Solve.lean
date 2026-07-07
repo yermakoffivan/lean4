@@ -99,6 +99,24 @@ private def getWPInfo? (rhs : Expr) : Option WPInfo :=
     else
       none
 
+/-- Infer the program monad `m` of a `vcgen` goal, so `frames`/`until` patterns elaborate against it
+and the `@[frameproc]` for the monad is selected before VC generation starts. Peels leading binders,
+then reads the program type from a bare `wp …` target, a `pre ⊑ wp …` entailment, or a `Triple`, and
+reduces it to expose the monad head. Returns `none` when the goal exposes no program. -/
+public def inferProgMonad? (goalType : Expr) : MetaM (Option Expr) := withReducible do
+  forallTelescopeReducing goalType fun _ body => do
+    let progTy? : Option Expr :=
+      if let some info := getWPInfo? body then
+        some info.progTy
+      else if let some (_, _, _, rhs) := body.app4? ``Lean.Order.PartialOrder.rel then
+        (getWPInfo? rhs).map (·.progTy)
+      else
+        body.withApp fun head args =>
+          if head.isConstOf ``Std.Internal.Do.Triple && args.size ≥ 3 then some args[2]! else none
+    let some progTy := progTy? | return none
+    let progTy ← whnf progTy
+    return some (if progTy.isApp then progTy.appFn! else progTy)
+
 /-- Strategy 3b: turn a bare `wp` application target (a `Prop`) into `⊤ ⊑ wp …`. Entry-point
 goals produced by the `of_wp_run_eq` lemmas have this shape. -/
 private def bareWPToLe? (goal : MVarId) (target : Expr) : VCGenM (Option MVarId) := do
@@ -327,11 +345,10 @@ private def applySpec (scope : VCGen.Scope) (goal : MVarId) (info : WPInfo) :
         rule type:{indentExpr ruleType}"
   return .goals scope goals
 
-/-- True iff the program matches the `until` pattern (elaborated lazily against the program
-monad), in which case VC generation stops at this goal. -/
-private def matchesUntilPattern (m prog : Expr) : VCGenM Bool := do
-  let some ref := (← read).untilPat? | return false
-  let pat ← (← ref.get).force ref.set m
+/-- True iff the program matches the `until` pattern, in which case VC generation stops at this
+goal. -/
+private def matchesUntilPattern (prog : Expr) : VCGenM Bool := do
+  let some pat := (← read).untilPat? | return false
   if (← pat.match? prog).isSome then
     trace[Elab.Tactic.Do.vcgen] "`until` pattern matched program {prog}; stopping"
     return true
@@ -371,10 +388,9 @@ private def elabFrame (resourceTy : Expr) (entry : FrameEntry) (res : Sym.MatchU
     mkLetFVars fvs frameExpr
 
 /-- Find an unretired `frames` alternative matching the program (earliest source order wins),
-elaborate its frame at the resource type `resourceTy`, and retire it so it applies at most once. The
-frame DB is materialized into `State` on first use. -/
-public def matchFrame? : VCGen.FrameInferenceProc := fun resourceTy _pre info => do
-  let db ← (← get).frameDB.force (fun d => modify fun s => { s with frameDB := d }) info.m
+elaborate its frame at the resource type `resourceTy`, and retire it so it applies at most once. -/
+public def matchFrame? (resourceTy : Expr) (info : WPInfo) : VCGenM (Option Expr) := do
+  let db := (← get).frameDB
   let mut best : Option (FrameEntry × Sym.MatchUnifyResult) := none
   for srcIdx in Sym.getMatch db.tree info.prog do
     let entry := db.entries[srcIdx]!
@@ -384,8 +400,9 @@ public def matchFrame? : VCGen.FrameInferenceProc := fun resourceTy _pre info =>
       | none => best := some (entry, res)
       | some (b, _) => if entry.srcIdx < b.srcIdx then best := some (entry, res)
   let some (entry, res) := best | return none
-  modify fun s => { s with frameDB := s.frameDB.modifyElaborated fun db =>
-    { db with entries := db.entries.set! entry.srcIdx { entry with retired := true } } }
+  modify fun s =>
+    let entries := s.frameDB.entries.set! entry.srcIdx { entry with retired := true }
+    { s with frameDB := { s.frameDB with entries } }
   let F ← elabFrame resourceTy entry res
   trace[Elab.Tactic.Do.vcgen] "`frames` matched {info.prog}; frame:{indentExpr F}"
   return some F
@@ -405,8 +422,10 @@ explicit `frames` clause first (elaborated at the operator's resource type), the
 procedure. -/
 private def matchFrameProc? (pre : Expr) (info : WPInfo) :
     VCGenM (Option (Expr × Expr)) := do
-  let procs ← getFrameProcs
-  let fp? := (info.m.getAppFn.constName?).bind (procs.procs[·]?)
+  -- The frame procedure selected at init frames only nodes whose monad it registered for: a program
+  -- may reach sub-programs in a different monad (e.g. a `monadLift`ed base call), which it must not
+  -- frame.
+  let fp? := (← read).selectedFrameProc?.filter (info.m.getAppFn.constName? == some ·.prog)
   let (op, resourceTy) ← match fp? with
     | some fp =>
       let op ← fp.op info
@@ -414,7 +433,7 @@ private def matchFrameProc? (pre : Expr) (info : WPInfo) :
     | none =>
       let op ← Meta.mkAppOptM ``Lean.Order.meet #[info.Pred, none]
       pure (op, info.Pred)
-  if let some F ← (← read).frameInferenceProc.toProc resourceTy pre info then
+  if let some F ← matchFrame? resourceTy info then
     return some (F, op)
   let some fp := fp? | return none
   let some F ← fp.proc resourceTy pre info | return none
@@ -528,7 +547,7 @@ public def solve (scope : VCGen.Scope) (goal : MVarId) : VCGenM SolveResult := g
   if let some info := getWPInfo? rhs then
     trace[Elab.Tactic.Do.vcgen] "📜 Program: {info.prog}"
     -- Stop if the program matches the `until` pattern.
-    if ← matchesUntilPattern info.m info.prog then
+    if ← matchesUntilPattern info.prog then
       return .stop (.untilPatternMatched info.m)
     if let some g ← wpLet? goal info then
       VCGen.burnOne

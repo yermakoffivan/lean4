@@ -147,7 +147,7 @@ Return the VCs and invariant goals.
 `stepLimit?`, when `some n`, seeds the fuel counter to `n`; when `none`, fuel is unlimited.
 -/
 public partial def run (goal : Grind.Goal) (ctx : Context) (scope : VCGen.Scope)
-    (stepLimit? : Option Nat := none) (frameDB : Deferred FrameDB := default) :
+    (stepLimit? : Option Nat := none) (frameDB : FrameDB := {}) :
     Grind.GrindM Result := do
   let initState : State :=
     { fuel := match stepLimit? with | some n => .limited n | none => .unlimited, frameDB }
@@ -157,9 +157,8 @@ public partial def run (goal : Grind.Goal) (ctx : Context) (scope : VCGen.Scope)
   _ ← state.vcs.mapIdxM fun idx g => do
     g.mvarId.setTag (Name.mkSimple ("vc" ++ toString (idx + 1)) ++ (← g.mvarId.getTag).eraseMacroScopes)
   let vcs ← state.vcs.filterM (not <$> ·.mvarId.isAssigned)
-  let unmatchedFrames := match state.frameDB with
-    | .elaborated db => db.entries.filterMap fun e => if e.retired then none else some e.frameStx
-    | _ => #[]
+  let unmatchedFrames := state.frameDB.entries.filterMap fun e =>
+    if e.retired then none else some e.frameStx
   return {
     invariants := state.invariants,
     vcs,

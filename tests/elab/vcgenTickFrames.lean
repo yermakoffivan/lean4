@@ -383,7 +383,7 @@ def tickList {α : Type} (xs : List α) : TickM Unit := do
 /-- A *stopwatch* spec: from zero accumulated cost, `prog` ends at cost `n`. -/
 local syntax:60 term:61 " ⏱ " term:61 : term
 local macro_rules
-  | `($prog:term ⏱ $n:term) => `(⦃ (· = 0) ⦄ $prog ⦃ fun _ m => m = $n ⦄)
+  | `($prog:term ⏱ $n:term) => `(⦃ (⌜· = 0⌝) ⦄ $prog ⦃ fun _ m => ⌜m = $n⌝ ⦄)
 
 /-- The stopwatch spec for `tickList`: timed from zero, it costs exactly `xs.length`. Concrete (not
 schematic in the post), so `vcgen` only frames it where the start cost is not zero. -/
@@ -418,7 +418,7 @@ through the base's state spec while the frame-internalizing wp leaves the cost u
 is the base wp with the cost `n` held fixed. Registered so `vcgen` decomposes lifted base effects. -/
 @[spec] theorem Spec.monadLift_TickT [Assertion Pred] [Assertion EPred]
     [WPMonad m Pred EPred] {α : Type} (x : m α) (Q : α → Nat → Pred) (E : EPred) :
-    Triple (MonadLift.monadLift x : TickT m α) (fun n => WP.wp x (fun a => Q a n) E) Q E := by
+    ⦃fun n => WP.wp x (fun a => Q a n) E⦄ (MonadLift.monadLift x : TickT m α) ⦃Q; E⦄ := by
   constructor
   intro n
   show WP.wp x (fun a => Q a n) E ⊑ TickT.wp (MonadLift.monadLift x) Q E n
@@ -437,4 +437,8 @@ def foo : TickT (StateM Nat) Unit := modify (fun x => x + 1)
     ⦃ fun _ base => base = 0 ⦄
     foo
     ⦃ fun _ _ base => base = 1 ⦄ := by
+  vcgen [foo] with finish
+
+@[spec] theorem fooTick :
+    foo ⏱ 0 := by
   vcgen [foo] with finish

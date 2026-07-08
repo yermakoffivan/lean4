@@ -11,6 +11,8 @@ public import Init.Data.Array.InsertionSort
 public import Lean.Meta.Instances
 public import Lean.Meta.AbstractMVars
 public import Lean.Meta.Check
+import Lean.Meta.CollectMVars
+import Lean.Meta.FunInfo
 import Init.While
 
 public section
@@ -62,6 +64,13 @@ structure ConsumerNode where
   key      : Expr
   mctx     : MetavarContext
   subgoals : List Expr
+  /--
+  Postponed unification problems `(goalArg, instArg)`, interpreted under `mctx`.
+  They are created by `tryResolve` for stuck instance-implicit arguments of the goal class
+  (see `isDefEqInstanceType`), and discharged by `consume` as soon as the subgoal
+  metavariables occurring in them have been resolved.
+  -/
+  postponedChecks : List (Expr × Expr)
   size     : Nat -- instance size so far
   deriving Inhabited
 
@@ -338,11 +347,89 @@ def getSubgoals (lctx : LocalContext) (localInsts : LocalInstances) (xs : Array 
   }
 
 /--
+Unify the goal type `goalType` with the instance result type `instType`, both applications of the
+same class. On success, return the list of postponed unification problems (see below).
+
+For classes parametrized by other classes (e.g. `NoNatZeroDivisors (α : Type u) [NatModule α]`),
+the instance-implicit arguments of `instType` may mention instance binder metavariables — that is,
+future subgoals — under projections. For example, the Mathlib instance
+```
+instance [AddSemigroup α] [IsRightCancelAdd α] : Grind.AddRightCancel α
+```
+has result type `@AddRightCancel ?α (@AddSemigroup.toAdd ?α ?instAS)`, where `?instAS` occurs only
+in the class-parameter argument. `isDefEq` gets stuck on such arguments *before* the subgoals have
+been synthesized: it unfolds aggressively (delta/structure-eta cascades) and invokes `synthPending`,
+which performs nested, non-tabled TC searches that commit to the first answer found. We avoid this
+by *postponing* these arguments: they are skipped during unification (the instance-side argument is
+temporarily replaced by the goal-side one) and returned as pending checks, to be verified by
+`consume` after the subgoal metavariables occurring in them have been resolved by the tabled
+search. At that point the checks are ground, and candidate instances whose subgoals fail are
+rejected without ever performing the stuck unification.
+
+An instance-implicit argument at position `i` is postponed iff
+- the goal-side argument is metavariable-free,
+- the instance-side argument properly contains metavariables (a bare metavariable is cheaply
+  handled by regular unification), and
+- its metavariables that do not occur in eagerly unified arguments are all subgoal metavariables
+  (so the tabled search is guaranteed to resolve them), with at least one such metavariable
+  (otherwise the argument becomes ground during unification anyway, and eager unification is both
+  cheap and more precise).
+-/
+private def isDefEqInstanceType (goalType instType : Expr) (subgoals : List Expr) :
+    MetaM (Option (List (Expr × Expr))) := do
+  if subgoals.isEmpty then return (← eager)
+  let fInst := instType.getAppFn
+  let .const declName _ := fInst | eager
+  let goalType ← instantiateMVars goalType
+  unless goalType.getAppFn.isConstOf declName do return (← eager)
+  let goalArgs := goalType.getAppArgs
+  let instArgs := instType.getAppArgs
+  unless goalArgs.size == instArgs.size do return (← eager)
+  let paramInfo := (← getFunInfoNArgs fInst instArgs.size).paramInfo
+  unless paramInfo.size == instArgs.size do return (← eager)
+  -- Candidate positions for postponement
+  let mut candidates := #[]
+  for i in *...instArgs.size do
+    let instArg := instArgs[i]!
+    if paramInfo[i]!.binderInfo.isInstImplicit && instArg.hasExprMVar && !instArg.isMVar
+        && !goalArgs[i]!.hasExprMVar then
+      candidates := candidates.push i
+  if candidates.isEmpty then return (← eager)
+  -- Metavariables occurring in eagerly unified arguments
+  let mut eagerMVars : Array MVarId := #[]
+  for i in *...instArgs.size do
+    unless candidates.contains i do
+      eagerMVars := eagerMVars ++ (← getMVars instArgs[i]!)
+  let subgoalMVarIds := subgoals.map (·.mvarId!)
+  let mut postponed := #[]
+  for i in candidates do
+    let argMVars ← getMVars instArgs[i]!
+    let notEager := argMVars.filter (!eagerMVars.contains ·)
+    if !notEager.isEmpty && notEager.all (subgoalMVarIds.contains ·) then
+      postponed := postponed.push i
+  if postponed.isEmpty then return (← eager)
+  -- Replace the postponed arguments with the goal-side ones, and unify the rest as usual.
+  let mut instArgs' := instArgs
+  for i in postponed do
+    instArgs' := instArgs'.set! i goalArgs[i]!
+  unless (← isDefEq goalType (mkAppN fInst instArgs')) do return none
+  let mut checks := []
+  for i in postponed.reverse do
+    trace[Meta.synthInstance.postponedChecks] "postponed {goalArgs[i]!} ≟ {instArgs[i]!}"
+    checks := (goalArgs[i]!, instArgs[i]!) :: checks
+  return some checks
+where
+  eager : MetaM (Option (List (Expr × Expr))) := do
+    if (← isDefEq goalType instType) then return some [] else return none
+
+/--
   Try to synthesize metavariable `mvar` using the instance `inst`.
   Remark: `mctx` is set using `withMCtx`.
-  If it succeeds, the result is a new updated metavariable context and a new list of subgoals.
+  If it succeeds, the result is a new updated metavariable context, a new list of subgoals, and
+  a list of postponed unification checks (see `isDefEqInstanceType`).
   A subgoal is created for each instance implicit parameter of `inst`. -/
-def tryResolve (mvar : Expr) (inst : Instance) : MetaM (Option (MetavarContext × List Expr)) := do
+def tryResolve (mvar : Expr) (inst : Instance) :
+    MetaM (Option (MetavarContext × List Expr × List (Expr × Expr))) := do
   if (← isDiagnosticsEnabled) then
     if let .const declName _ := inst.val.getAppFn then
       recordInstance declName
@@ -353,27 +440,43 @@ def tryResolve (mvar : Expr) (inst : Instance) : MetaM (Option (MetavarContext �
     let { subgoals, instVal, instTypeBody } ← getSubgoals lctx localInsts xs inst
     withTraceNode `Meta.synthInstance.tryResolve (fun _ => do withMCtx (← getMCtx) do
         return m!"{← instantiateMVars mvarTypeBody} ≟ {← instantiateMVars instTypeBody}") do
-    if (← isDefEq mvarTypeBody instTypeBody) then
-      /-
-      We set `etaReduce := true`.
-      For example, suppose `e` is the local variable `inst x y`, and `xs` is `#[x, y]`, then
-      the result is `inst` instead of `fun x y => inst x y`.
+    let checks? ←
+      if xs.isEmpty then
+        isDefEqInstanceType mvarTypeBody instTypeBody subgoals
+      else
+        -- Postponed checks would contain the fvars in `xs`, which do not escape this telescope.
+        if (← isDefEq mvarTypeBody instTypeBody) then pure (some []) else pure none
+    let some postponedChecks := checks? | return none
+    /-
+    We set `etaReduce := true`.
+    For example, suppose `e` is the local variable `inst x y`, and `xs` is `#[x, y]`, then
+    the result is `inst` instead of `fun x y => inst x y`.
 
-      Consider the following definition.
-      ```
-      def filter (p : α → Prop) [inst : DecidablePred p] (xs : List α) : List α :=
-        match xs with
-        | [] => []
-        | x :: xs' => if p x then x :: filter p xs' else filter p xs'
-      ```
-      Without `etaReduce := true`, the implicit instance at the `filter` applications would be `fun x => inst x` instead of `inst`.
-      Moreover, the equation lemmas associated with `filter` would have `fun x => inst x` on their right-hand-side. Then,
-      we would start getting terms such as `fun x => (fun x => inst x) x` when using the equational theorem.
-      -/
-      let instVal ← mkLambdaFVars xs instVal (etaReduce := true)
-      if (← isDefEq mvar instVal) then
-        return some ((← getMCtx), subgoals)
-    return none
+    Consider the following definition.
+    ```
+    def filter (p : α → Prop) [inst : DecidablePred p] (xs : List α) : List α :=
+      match xs with
+      | [] => []
+      | x :: xs' => if p x then x :: filter p xs' else filter p xs'
+    ```
+    Without `etaReduce := true`, the implicit instance at the `filter` applications would be `fun x => inst x` instead of `inst`.
+    Moreover, the equation lemmas associated with `filter` would have `fun x => inst x` on their right-hand-side. Then,
+    we would start getting terms such as `fun x => (fun x => inst x) x` when using the equational theorem.
+    -/
+    let instVal ← mkLambdaFVars xs instVal (etaReduce := true)
+    /-
+    The goal type and `instTypeBody` have just been unified (modulo the postponed checks), and
+    the type of `instVal` is `instTypeBody` by construction, so re-checking types while
+    assigning `mvar := instVal` (i.e., using `isDefEq mvar instVal`) is redundant. Worse, the
+    recheck can be very expensive: when the goal type contains instance metavariables in
+    class-parameter positions (e.g., for subgoals of classes parametrized by other classes),
+    it gets stuck and triggers nested `synthPending` searches. So, we assign directly.
+    -/
+    if (← mvar.mvarId!.isAssigned) then
+      unless (← isDefEq mvar instVal) do return none
+    else
+      mvar.mvarId!.assign instVal
+    return some ((← getMCtx), subgoals, postponedChecks)
 
 /--
   Assign a precomputed answer to `mvar`.
@@ -487,6 +590,35 @@ private def removeUnusedArguments? (mctx : MetavarContext) (mvar : Expr) : MetaM
           trace[Meta.synthInstance.unusedArgs] "{mvarType}\nhas unused arguments, reduced type{indentExpr mvarType'}\nTransformer{indentExpr transformer}"
           return some (mvarType', transformer)
 
+/--
+  Run the postponed checks of `cNode` that are ready, i.e., whose metavariables have all been
+  resolved (when `cNode.subgoals` is empty, all of them are ready; see `isDefEqInstanceType`).
+  Return `none` if a check fails, and the node with the remaining pending checks otherwise.
+-/
+def checkPostponed (cNode : ConsumerNode) : SynthM (Option ConsumerNode) := do
+  if cNode.postponedChecks.isEmpty then return some cNode
+  withMCtx cNode.mctx do
+    let runAll := cNode.subgoals.isEmpty
+    let mut pending := #[]
+    for check in cNode.postponedChecks do
+      let (goalArg, instArg) := check
+      let instArg ← instantiateMVars instArg
+      if runAll || !instArg.hasExprMVar then
+        let ok ← withTraceNode `Meta.synthInstance.postponedChecks
+            (fun _ => return m!"{goalArg} ≟ {instArg}") do
+          -- Same configuration `isDefEqArgs` uses for instance-implicit arguments.
+          -- Keep in sync with `withImplicitConfig` in `Lean.Meta.ExprDefEq` (which we cannot
+          -- import here as it depends on this module through `Lean.Meta.UnificationHint`).
+          withAtLeastTransparency .implicit <|
+            withConfig (fun cfg => { cfg with
+              beta := true, iota := true, zeta := true, zetaHave := true, zetaDelta := true,
+              proj := .yesWithDelta }) <|
+            isDefEq goalArg instArg
+        unless ok do return none
+      else
+        pending := pending.push check
+    return some { cNode with postponedChecks := pending.toList, mctx := (← getMCtx) }
+
 /-- Process the next subgoal in the given consumer node. -/
 def consume (cNode : ConsumerNode) : SynthM Unit := do
   /- Filter out subgoals that have already been assigned when solving typing constraints.
@@ -504,6 +636,7 @@ def consume (cNode : ConsumerNode) : SynthM Unit := do
     subgoals := ← withMCtx cNode.mctx do
       cNode.subgoals.filterM (not <$> ·.mvarId!.isAssigned)
   }
+  let some cNode ← checkPostponed cNode | return ()
   match cNode.subgoals with
   | []      => addAnswer cNode
   | mvar::_ =>
@@ -576,8 +709,8 @@ def generate : SynthM Unit := do
       withTraceNode `Meta.synthInstance.apply
         (fun _ => return m!"apply {inst.val} to {← instantiateMVars (← inferType mvar)}") do
       modifyTop fun gNode => { gNode with currInstanceIdx := idx }
-      if let some (mctx, subgoals) ← tryResolve mvar inst then
-        consume { key, mvar, subgoals, mctx, size := 0 }
+      if let some (mctx, subgoals, postponedChecks) ← tryResolve mvar inst then
+        consume { key, mvar, subgoals, postponedChecks, mctx, size := 0 }
         return some ()
       return none
 
@@ -604,7 +737,8 @@ def resume : SynthM Unit := do
         (fun _ => withMCtx cNode.mctx do
           return m!"propagating {← instantiateMVars answer.resultType} to subgoal {← instantiateMVars subgoal} of {← instantiateMVars goal}") do
       trace[Meta.synthInstance.resume] "size: {cNode.size + answer.size}"
-      consume { key := cNode.key, mvar := cNode.mvar, subgoals := rest, mctx, size := cNode.size + answer.size }
+      consume { key := cNode.key, mvar := cNode.mvar, subgoals := rest,
+                postponedChecks := cNode.postponedChecks, mctx, size := cNode.size + answer.size }
 
 def step : SynthM Bool := do
   checkSystem
@@ -986,6 +1120,7 @@ builtin_initialize
   registerTraceClass `Meta.synthInstance.apply (inherited := true)
   registerTraceClass `Meta.synthInstance.instances (inherited := true)
   registerTraceClass `Meta.synthInstance.tryResolve (inherited := true)
+  registerTraceClass `Meta.synthInstance.postponedChecks (inherited := true)
   registerTraceClass `Meta.synthInstance.answer (inherited := true)
   registerTraceClass `Meta.synthInstance.resume (inherited := true)
   registerTraceClass `Meta.synthInstance.unusedArgs
